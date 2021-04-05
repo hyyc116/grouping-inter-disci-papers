@@ -29,7 +29,7 @@ def plot_topic_rel():
     for t1 in fos1_fos2_func.keys():
         name1 = fos_name[t1]
         for t2 in fos1_fos2_func[t1].keys():
-            name2 = fos_name[fos2]
+            name2 = fos_name[t2]
             num = fos1_fos2_func[t1].get(t2, 0)
             rels.append('{:},{:},{:}'.format(name1, name2, num))
 

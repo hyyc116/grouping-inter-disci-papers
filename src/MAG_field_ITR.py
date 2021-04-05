@@ -22,7 +22,7 @@ def plot_topic_rel():
     logging.info('topic relevance saved to data/topic_relevance.csv')
 
     ## 画热力图
-    plot_heatmap('data/topic_relevance.csv', 'correlation matrix', 'field',
+    plot_heatmap('data/mag_topic_relevance.csv', 'correlation matrix', 'field',
                  'field', 'fig/mag_topic_rel_matrix.png')
 
 

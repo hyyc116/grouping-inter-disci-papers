@@ -11,12 +11,27 @@ from basic_config import *
 
 ## 学科相似度分布
 def plot_topic_rel():
+
+    fos_name = {}
+    for line in open('data/fos_level0.txt'):
+
+        line = line.strip()
+
+        if line.startswith('fos'):
+            continue
+
+        fos, name, level = line.split(',')
+
+        fos_name[fos] = name
+
     fos1_fos2_func = json.loads(open('data/fos1_fos2_func.json').read())
     rels = ['t1,t2,rel']
     for t1 in fos1_fos2_func.keys():
+        name1 = fos_name[t1]
         for t2 in fos1_fos2_func[t1].keys():
+            name2 = fos_name[fos2]
             num = fos1_fos2_func[t1].get(t2, 0)
-            rels.append('{:},{:},{:}'.format(t1, t2, num))
+            rels.append('{:},{:},{:}'.format(name1, name2, num))
 
     open('data/mag_topic_relevance.csv', 'w').write('\n'.join(rels))
     logging.info('topic relevance saved to data/topic_relevance.csv')

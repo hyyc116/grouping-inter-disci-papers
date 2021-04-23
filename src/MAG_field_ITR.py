@@ -50,7 +50,7 @@ def cor_sim_itr():
 
     for fos1 in fos1_fos2_func.keys():
 
-        if fos1_fos2_func[fos1][fos2] > 0.5:
+        if fos1_fos2_func[fos1][fos1] > 0.5:
 
             selected_funcs.append(fos1)
 

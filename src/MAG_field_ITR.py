@@ -86,4 +86,6 @@ def cor_sim_itr():
 
 
 if __name__ == '__main__':
-    plot_topic_rel()
+    # plot_topic_rel()
+
+    cor_sim_itr()

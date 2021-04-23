@@ -72,7 +72,7 @@ def cor_sim_itr():
 
     plt.figure(figsize=(5, 4))
 
-    plt.plot(xs, ys, 'o', fill_style='none')
+    plt.plot(xs, ys, 'o')
 
     plt.xscale("log")
     plt.yscale('log')

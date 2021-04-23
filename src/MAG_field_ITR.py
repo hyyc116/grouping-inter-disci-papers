@@ -88,10 +88,13 @@ def cor_sim_itr():
 
             xs.append(new_fos1_fos2[fos1][fos2])
             ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))
+    dic = {'field similarity': xs, 'ITR': ys}
+    data = pd.DataFrame(dic)
 
     plt.figure(figsize=(5, 4))
 
-    plt.plot(xs, ys, 'o')
+    # plt.plot(xs, ys, 'o')
+    sns.lineplot(data=data, x='field similarity', y='ITR')
 
     plt.xscale("log")
     plt.yscale('log')

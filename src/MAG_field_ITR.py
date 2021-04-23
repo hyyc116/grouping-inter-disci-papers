@@ -45,6 +45,15 @@ def plot_topic_rel():
 def cor_sim_itr():
     # 两个学科的相似度
     fos1_fos2_func = json.loads(open('data/fos1_fos2_func.json').read())
+
+    selected_funcs = []
+
+    for fos1 in fos1_fos2_func.keys():
+
+        if fos1_fos2_func[fos1][fos2] > 0.5:
+
+            selected_funcs.append(fos1)
+
     # 相似度与转化率的关系
 
     fos1_fos2_itrs = defaultdict(lambda: defaultdict(list))
@@ -66,6 +75,9 @@ def cor_sim_itr():
     for fos1 in fos1_fos2_itrs.keys():
 
         for fos2 in fos1_fos2_itrs[fos1].keys():
+
+            if fos1 not in selected_funcs or fos2 not in selected_funcs:
+                continue
 
             xs.append(fos1_fos2_func[fos1][fos2])
             ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))

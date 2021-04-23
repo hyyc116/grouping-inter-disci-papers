@@ -9,6 +9,8 @@
 from basic_config import *
 
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
+lowess = sm.nonparametric.lowess
 
 
 ## 学科相似度分布
@@ -97,6 +99,10 @@ def cor_sim_itr():
 
     # plt.plot(xs, ys, 'o')
     sns.lineplot(data=data, x='FS', y='ITR')
+
+    xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
+
+    plt.plot(xs, ys, '--', c='r')
 
     mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
 

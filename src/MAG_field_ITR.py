@@ -8,6 +8,8 @@
 '''
 from basic_config import *
 
+import statsmodels.formula.api as smf
+
 
 ## 学科相似度分布
 def plot_topic_rel():
@@ -95,6 +97,12 @@ def cor_sim_itr():
 
     # plt.plot(xs, ys, 'o')
     sns.lineplot(data=data, x='field similarity', y='ITR')
+
+    mod = smf.ols(formula='np.log(ITR) ~ np.log(field similarity)', data=data)
+
+    res = mod.fit()
+
+    print(res.summary())
 
     plt.xscale("log")
     plt.yscale('log')

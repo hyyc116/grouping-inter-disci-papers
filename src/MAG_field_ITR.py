@@ -48,11 +48,18 @@ def cor_sim_itr():
 
     selected_funcs = []
 
+    new_fos1_fos2 = defaultdict(lambda: defaultdict(float))
     for fos1 in fos1_fos2_func.keys():
 
-        if fos1_fos2_func[fos1][fos1] > 0.5:
+        self_func = fos1_fos2_func[fos1][fos1]
+        if self_func > 0.5:
 
             selected_funcs.append(fos1)
+
+            for fos2 in fos1_fos2_func[fos1].keys():
+
+                new_fos1_fos2[fos1][
+                    fos2] = fos1_fos2_func[fos1][fos2] / self_func
 
     # 相似度与转化率的关系
 
@@ -76,10 +83,10 @@ def cor_sim_itr():
 
         for fos2 in fos1_fos2_itrs[fos1].keys():
 
-            if fos1 not in selected_funcs or fos2 not in selected_funcs:
+            if fos1 not in selected_funcs or fos2 not in selected_funcs or fos1 == fos2:
                 continue
 
-            xs.append(fos1_fos2_func[fos1][fos2])
+            xs.append(new_fos1_fos2[fos1][fos2])
             ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))
 
     plt.figure(figsize=(5, 4))

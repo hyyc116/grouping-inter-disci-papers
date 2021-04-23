@@ -90,15 +90,15 @@ def cor_sim_itr():
 
             xs.append(new_fos1_fos2[fos1][fos2])
             ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))
-    dic = {'field similarity': xs, 'ITR': ys}
+    dic = {'FS': xs, 'ITR': ys}
     data = pd.DataFrame(dic)
 
     plt.figure(figsize=(5, 4))
 
     # plt.plot(xs, ys, 'o')
-    sns.lineplot(data=data, x='field similarity', y='ITR')
+    sns.lineplot(data=data, x='FS', y='ITR')
 
-    mod = smf.ols(formula='np.log(ITR) ~ np.log(field similarity)', data=data)
+    mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
 
     res = mod.fit()
 

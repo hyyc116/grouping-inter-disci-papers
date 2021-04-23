@@ -57,6 +57,8 @@ def cor_sim_itr():
 
         pid, subj, osubj, func, I0, IT, ITR = line.split(',')
 
+        ITR = float(ITR)
+
         fos1_fos2_itrs[subj][osubj].append(ITR)
 
     xs = []

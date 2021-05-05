@@ -113,9 +113,11 @@ def cor_sim_itr():
 
     prstd, iv_l, iv_u = wls_prediction_std(res)
 
-    plt.plot(xs, np.exp(res.fittedvalues), 'r--.', label="OLS")
-    plt.plot(xs, np.exp(iv_u), 'r--')
-    plt.plot(xs, np.exp(iv_l), 'r--')
+    plt.plot(xs, np.exp(res.fittedvalues), 'b', label="OLS")
+    plt.plot(xs, np.exp(iv_u), 'r')
+    plt.plot(xs, np.exp(iv_l), 'r')
+
+    plt.yscale(0.1, 10)
     plt.legend(loc='best')
 
     plt.xscale("log")

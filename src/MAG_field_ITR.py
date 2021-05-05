@@ -117,7 +117,7 @@ def cor_sim_itr():
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 
-    plt.yscale(0.1, 10)
+    plt.ylim(0.1, 10)
     plt.legend(loc='best')
 
     plt.xscale("log")

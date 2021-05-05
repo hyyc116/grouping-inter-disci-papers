@@ -11,6 +11,7 @@ from basic_config import *
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
 lowess = sm.nonparametric.lowess
+from statsmodels.sandbox.regression.predstd import wls_prediction_std
 
 
 ## 学科相似度分布
@@ -98,17 +99,24 @@ def cor_sim_itr():
     plt.figure(figsize=(5, 4))
 
     # plt.plot(xs, ys, 'o')
-    sns.lineplot(data=data, x='FS', y='ITR')
+    sns.scatterplot(data=data, x='FS', y='ITR')
 
-    xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
+    # xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
 
-    plt.plot(xs, ys, '--', c='r')
+    # plt.plot(xs, ys, '--', c='r')
 
     mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
 
     res = mod.fit()
 
-    print(res.summary())
+    # print(res.summary())
+
+    prstd, iv_l, iv_u = wls_prediction_std(res)
+
+    plt.plot(xs, np.exp(res.fittedvalues), 'r--.', label="OLS")
+    plt.plot(xs, np.exp(iv_u), 'r--')
+    plt.plot(xs, np.exp(iv_l), 'r--')
+    plt.legend(loc='best')
 
     plt.xscale("log")
     plt.yscale('log')

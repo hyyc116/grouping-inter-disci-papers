@@ -133,7 +133,57 @@ def cor_sim_itr():
     logging.info('fig saved to fig/sim_ITR.png')
 
 
+def I0_rate():
+
+    paper_IO = {}
+    paper_t = defaultdict(int)
+
+    for line in open("data/paper_ITR.csv"):
+        line = line.strip()
+
+        if line.startswith('pid'):
+            continue
+
+        pid, subj, osubj, func, I0, It, ITR = line.split(',')
+
+        paper_IO[pid] = I0
+        paper_t[pid] += It
+
+    I0_rate = defaultdict(list)
+    for paper in paper_IO.keys():
+
+        I0 = paper_IO[paper]
+        t = paper_t[paper] + I0
+
+        I0_rate[I0].append((I0 + 0.0) / (I0 + t))
+
+    xs = []
+    ys = []
+    ys_max = []
+    ys_min = []
+    for I0 in sorted(I0_rate.keys()):
+
+        xs.append(I0)
+        ys.append(np.mean(I0_rate[I0]))
+
+        ys_max.append(np.max(I0_rate[I0]))
+        ys_min.append(np.min(I0_rate[I0]))
+
+    plt.figure(figsize=(5, 4))
+
+    plt.plot(xs, ys, label='mean')
+    plt.fill_between(xs, ys_min, ys_max, alpha=0.7)
+
+    plt.tight_layout()
+
+    plt.savefig('fig/I0_rate.png', dpi=400)
+
+    logging.info('fig saved to fig/I0_rate.png.')
+
+
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    cor_sim_itr()
+    # cor_sim_itr()
+
+    I0_rate()

@@ -174,6 +174,8 @@ def I0_rate():
     plt.plot(xs, ys, label='mean')
     plt.fill_between(xs, ys_min, ys_max, alpha=0.7)
 
+    plt.xscale('log')
+
     plt.tight_layout()
 
     plt.savefig('fig/I0_rate.png', dpi=400)

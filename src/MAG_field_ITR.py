@@ -146,8 +146,8 @@ def I0_rate():
 
         pid, subj, osubj, func, I0, It, ITR = line.split(',')
 
-        paper_IO[pid] = I0
-        paper_t[pid] += It
+        paper_IO[pid] = int(I0)
+        paper_t[pid] += int(It)
 
     I0_rate = defaultdict(list)
     for paper in paper_IO.keys():

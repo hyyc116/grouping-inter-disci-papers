@@ -194,7 +194,7 @@ def I0_rate():
         '500': I0_rate[500]
     }
 
-    fig, axes = plt.figure(3, 2, figsize=(10, 12))
+    fig, axes = plt.subplots(3, 2, figsize=(10, 12))
 
     xs = ['5', '10', '20', '50', '100', '500']
 

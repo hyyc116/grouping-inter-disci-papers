@@ -202,7 +202,7 @@ def I0_rate():
 
         ax = axes[int(i // 2)][i % 2]
 
-        sns.displot(data=data, x=x, kde=True, fill=False, ax=ax)
+        sns.histplot(data=data, x=x, kde=True, fill=False, ax=ax)
 
     plt.tight_layout()
 

@@ -174,6 +174,9 @@ def I0_rate():
     plt.plot(xs, ys, label='mean')
     plt.fill_between(xs, ys_min, ys_max, alpha=0.7)
 
+    plt.xlabel("$I_0$")
+    plt.ylabel('$I_0$ Rate')
+
     plt.xscale('log')
 
     plt.tight_layout()
@@ -181,6 +184,30 @@ def I0_rate():
     plt.savefig('fig/I0_rate.png', dpi=400)
 
     logging.info('fig saved to fig/I0_rate.png.')
+
+    data = {
+        '5': I0_rate[5],
+        '10': I0_rate[10],
+        '20': I0_rate[20],
+        '50': I0_rate[50],
+        '100': I0_rate[100],
+        '500': I0_rate[500]
+    }
+
+    fig, axes = plt.figure(3, 2, figsize=(10, 12))
+
+    xs = ['5', '10', '20', '50', '100', '500']
+
+    for i, x in enumerate(xs):
+
+        ax = axes[int(i // 2)][i % 2]
+
+        sns.displot(data=data, x=x, kde=True, fill=False, ax=ax)
+
+    plt.tight_layout()
+
+    plt.savefig('fig/I0_RATE_FACETS.png')
+    logging.info('fig saved to fig/I0_RATE_FACETS.png')
 
 
 if __name__ == '__main__':

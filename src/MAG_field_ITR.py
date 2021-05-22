@@ -174,7 +174,7 @@ def I0_rate():
 
     # xs, ys = zip(*lowess(ys, xs, frac=2. / 3, it=0))
     xs, ys_min = zip(*lowess(ys_min, xs, frac=2. / 3, it=0))
-    xs, ys_max = zip(*lowess(ys_max, xs, frac=2. / 3, it=0))
+    # xs, ys_max = zip(*lowess(ys_max, xs, frac=2. / 3, it=0))
 
     plt.figure(figsize=(5, 4))
 

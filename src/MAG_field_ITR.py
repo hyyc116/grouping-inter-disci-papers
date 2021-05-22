@@ -163,13 +163,16 @@ def I0_rate():
     ys_min = []
     for I0 in sorted(I0_rate.keys()):
 
+        if xs > 1000:
+            continue
+
         xs.append(I0)
         ys.append(np.mean(I0_rate[I0]))
 
         ys_max.append(np.max(I0_rate[I0]))
         ys_min.append(np.min(I0_rate[I0]))
 
-    xs, ys = zip(*lowess(ys, xs, frac=2. / 3, it=0))
+    # xs, ys = zip(*lowess(ys, xs, frac=2. / 3, it=0))
     xs, ys_min = zip(*lowess(ys_min, xs, frac=2. / 3, it=0))
     xs, ys_max = zip(*lowess(ys_max, xs, frac=2. / 3, it=0))
 

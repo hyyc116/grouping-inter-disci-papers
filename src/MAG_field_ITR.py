@@ -67,7 +67,7 @@ def cor_sim_itr():
                     fos2] = fos1_fos2_func[fos1][fos2] / self_func
 
     # 相似度与转化率的关系
-
+    all_sims = []
     fos1_fos2_itrs = defaultdict(lambda: defaultdict(list))
     for line in open('data/paper_ITR.csv'):
 
@@ -78,9 +78,13 @@ def cor_sim_itr():
 
         pid, subj, osubj, func, I0, IT, ITR = line.split(',')
 
+        all_sims.append(func)
+
         ITR = float(ITR)
 
         fos1_fos2_itrs[subj][osubj].append(ITR)
+
+    all_sims = sorted(list(set(all_sims)))
 
     xs = []
     ys = []
@@ -111,11 +115,11 @@ def cor_sim_itr():
 
     print(res.summary())
 
-    prstd, iv_l, iv_u = wls_prediction_std(res)
+    prstd, iv_l, iv_u = wls_prediction_std(res, exog=all_sims)
 
     plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
-    plt.plot(xs, np.exp(iv_u), 'r')
-    plt.plot(xs, np.exp(iv_l), 'r')
+    plt.plot(all_sims, np.exp(iv_u), 'r')
+    plt.plot(all_sims, np.exp(iv_l), 'r')
 
     plt.ylim(0.01, 10)
     plt.legend(loc='best')
@@ -131,6 +135,11 @@ def cor_sim_itr():
     plt.savefig('fig/sim_ITR.png', dpi=400)
 
     logging.info('fig saved to fig/sim_ITR.png')
+
+    data = {'xs': all_sims, 'up': list(iv_u), 'down': list(iv_l)}
+
+    open('data/up_low.json', 'w').write(json.dumps(data))
+    logging.info('data saved to data/up_low.json.')
 
 
 def I0_rate():

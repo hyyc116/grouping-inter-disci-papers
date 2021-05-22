@@ -169,9 +169,9 @@ def I0_rate():
         ys_max.append(np.max(I0_rate[I0]))
         ys_min.append(np.min(I0_rate[I0]))
 
-    xs, ys = zip(*lowess(ys, xs, frac=1. / 3, it=0))
-    xs, ys_min = zip(*lowess(ys_min, xs, frac=1. / 3, it=0))
-    xs, ys_max = zip(*lowess(ys_max, xs, frac=1. / 3, it=0))
+    xs, ys = zip(*lowess(ys, xs, frac=2. / 3, it=0))
+    xs, ys_min = zip(*lowess(ys_min, xs, frac=2. / 3, it=0))
+    xs, ys_max = zip(*lowess(ys_max, xs, frac=2. / 3, it=0))
 
     plt.figure(figsize=(5, 4))
 
@@ -196,7 +196,7 @@ def I0_rate():
         '100': I0_rate[200]
     }
 
-    fig, axes = plt.subplots(2, 2, figsize=(10, 12))
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
     xs = ['$I_0$=10', '$I_0$=50', '$I_0$=100', '$I_0$=200']
 

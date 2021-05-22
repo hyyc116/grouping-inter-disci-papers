@@ -169,10 +169,14 @@ def I0_rate():
         ys_max.append(np.max(I0_rate[I0]))
         ys_min.append(np.min(I0_rate[I0]))
 
+    xs, ys = zip(*lowess(ys, xs, frac=1. / 3, it=0))
+    xs, ys_min = zip(*lowess(ys_min, xs, frac=1. / 3, it=0))
+    xs, ys_max = zip(*lowess(ys_max, xs, frac=1. / 3, it=0))
+
     plt.figure(figsize=(5, 4))
 
     plt.plot(xs, ys, label='mean')
-    plt.fill_between(xs, ys_min, ys_max, alpha=0.7)
+    plt.fill_between(xs, ys_min, ys_max, alpha=0.5, color='gray')
 
     plt.xlabel("$I_0$")
     plt.ylabel('$I_0$ Rate')
@@ -186,28 +190,28 @@ def I0_rate():
     logging.info('fig saved to fig/I0_rate.png.')
 
     data = {
-        '5': I0_rate[5],
         '10': I0_rate[10],
-        '20': I0_rate[20],
-        '50': I0_rate[50],
-        '100': I0_rate[100],
-        '500': I0_rate[500]
+        '20': I0_rate[50],
+        '50': I0_rate[100],
+        '100': I0_rate[200]
     }
 
-    fig, axes = plt.subplots(3, 2, figsize=(10, 12))
+    fig, axes = plt.subplots(2, 2, figsize=(10, 12))
 
-    xs = ['5', '10', '20', '50', '100', '500']
+    xs = ['$I_0$=10', '$I_0$=50', '$I_0$=100', '$I_0$=200']
 
-    for i, x in enumerate(xs):
+    for i, x in enumerate(data.keys()):
 
         ax = axes[int(i // 2)][i % 2]
 
         sns.histplot(data=data,
                      x=x,
-                     kde=True,
+                     kde=False,
                      fill=False,
                      ax=ax,
                      stat='probability')
+
+        ax.set_xlabel(xs[i])
 
     plt.tight_layout()
 
@@ -218,6 +222,6 @@ def I0_rate():
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    cor_sim_itr()
+    # cor_sim_itr()
 
     I0_rate()

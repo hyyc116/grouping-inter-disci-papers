@@ -163,7 +163,7 @@ def I0_rate():
     ys_min = []
     for I0 in sorted(I0_rate.keys()):
 
-        if xs > 1000:
+        if I0 > 1000:
             continue
 
         xs.append(I0)

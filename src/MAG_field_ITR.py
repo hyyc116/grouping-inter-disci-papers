@@ -57,7 +57,7 @@ def cor_sim_itr():
     for fos1 in fos1_fos2_func.keys():
 
         self_func = fos1_fos2_func[fos1][fos1]
-        if self_func > 0.5:
+        if self_func > 0.3:
 
             selected_funcs.append(fos1)
 
@@ -155,7 +155,7 @@ def I0_rate():
         I0 = paper_IO[paper]
         t = paper_t[paper] + I0
 
-        I0_rate[I0].append((I0 + 0.0) / (I0 + t))
+        I0_rate[I0].append((I0 + 0.0) / t)
 
     xs = []
     ys = []
@@ -202,7 +202,12 @@ def I0_rate():
 
         ax = axes[int(i // 2)][i % 2]
 
-        sns.histplot(data=data, x=x, kde=True, fill=False, ax=ax)
+        sns.histplot(data=data,
+                     x=x,
+                     kde=True,
+                     fill=False,
+                     ax=ax,
+                     stat='probability')
 
     plt.tight_layout()
 
@@ -213,6 +218,6 @@ def I0_rate():
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    # cor_sim_itr()
+    cor_sim_itr()
 
     I0_rate()

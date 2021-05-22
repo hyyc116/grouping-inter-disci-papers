@@ -109,11 +109,11 @@ def cor_sim_itr():
 
     res = mod.fit()
 
-    # print(res.summary())
+    print(res.summary())
 
     prstd, iv_l, iv_u = wls_prediction_std(res)
 
-    plt.plot(xs, np.exp(res.fittedvalues), 'b', label="OLS")
+    plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 
@@ -222,9 +222,11 @@ def I0_rate():
     logging.info('fig saved to fig/I0_RATE_FACETS.png')
 
 
+# 计算每一篇论文的跨学科影响力类型
+
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    # cor_sim_itr()
+    cor_sim_itr()
 
-    I0_rate()
+    # I0_rate()

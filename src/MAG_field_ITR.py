@@ -115,7 +115,9 @@ def cor_sim_itr():
 
     print(res.summary())
 
-    prstd, iv_l, iv_u = wls_prediction_std(res, exog=np.array(all_sims))
+    prstd, iv_l, iv_u = wls_prediction_std(res,
+                                           exog=np.atleast_2d(all_sims),
+                                           weights=[1])
 
     plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
     plt.plot(all_sims, np.exp(iv_u), 'r')

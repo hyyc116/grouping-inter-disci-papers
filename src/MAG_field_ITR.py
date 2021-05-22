@@ -78,7 +78,7 @@ def cor_sim_itr():
 
         pid, subj, osubj, func, I0, IT, ITR = line.split(',')
 
-        all_sims.append(func)
+        all_sims.append(float(func))
 
         ITR = float(ITR)
 
@@ -115,7 +115,7 @@ def cor_sim_itr():
 
     print(res.summary())
 
-    prstd, iv_l, iv_u = wls_prediction_std(res, exog=all_sims)
+    prstd, iv_l, iv_u = wls_prediction_std(res, exog=np.array(all_sims))
 
     plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
     plt.plot(all_sims, np.exp(iv_u), 'r')

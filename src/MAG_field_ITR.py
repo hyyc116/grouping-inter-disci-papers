@@ -265,7 +265,8 @@ def cal_inter():
 
         up, low = sim_up_down[str(func)]
 
-        paper_labels[pid].append(label_inter(up, low, float(ITR)))
+        paper_labels[pid].append(
+            label_inter(np.exp(up), np.exp(low), float(ITR)))
 
     paper_label = {}
     label_count = defaultdict(int)

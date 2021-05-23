@@ -33,7 +33,7 @@ def plot_subject():
     # 排序
     results = {}
     for name in sorted(name_labelnum.keys(),
-                       key=lambda x: name_labelnum[x][0]):
+                       key=lambda x: name_labelnum[x][-1]):
         results[name] = [
             name_labelnum[name][-1], name_labelnum[name][0],
             name_labelnum[name][1]

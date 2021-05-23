@@ -97,6 +97,10 @@ def cor_sim_itr():
 
             xs.append(new_fos1_fos2[fos1][fos2])
             ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))
+
+    logging.info(f'{len(selected_funcs)} are selected.')
+    open('data/selected_fos.txt', 'w').write('\n'.join(selected_funcs))
+
     dic = {'FS': xs, 'ITR': ys}
     data = pd.DataFrame(dic)
 

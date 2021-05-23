@@ -120,7 +120,7 @@ def cor_sim_itr():
 
     print(res.summary())
 
-    prstd, iv_l, iv_u = wls_prediction_std(res, alpha=0.025)
+    prstd, iv_l, iv_u = wls_prediction_std(res)
 
     plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
     plt.plot(xs, np.exp(iv_u), 'r')

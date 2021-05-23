@@ -270,7 +270,7 @@ def cal_inter():
     paper_label = {}
     for pid in paper_labels.keys():
 
-        paper_label[pid] = np.max(paper_labels[pid])
+        paper_label[pid] = int(np.max(paper_labels[pid]))
 
     open('data/paper_inter_label.json', 'w').write(json.dumps(paper_label))
     logging.info('data saved to data/paper_inter_label.json.')

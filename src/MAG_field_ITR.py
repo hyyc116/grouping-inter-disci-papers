@@ -115,13 +115,11 @@ def cor_sim_itr():
 
     print(res.summary())
 
-    prstd, iv_l, iv_u = wls_prediction_std(res,
-                                           exog=np.atleast_2d(all_sims),
-                                           weights=[1])
+    prstd, iv_l, iv_u = wls_prediction_std(res)
 
     plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
-    plt.plot(all_sims, np.exp(iv_u), 'r')
-    plt.plot(all_sims, np.exp(iv_l), 'r')
+    plt.plot(xs, np.exp(iv_u), 'r')
+    plt.plot(xs, np.exp(iv_l), 'r')
 
     plt.ylim(0.01, 10)
     plt.legend(loc='best')
@@ -138,7 +136,7 @@ def cor_sim_itr():
 
     logging.info('fig saved to fig/sim_ITR.png')
 
-    data = {'xs': all_sims, 'up': list(iv_u), 'down': list(iv_l)}
+    data = {'xs': xs, 'up': list(iv_u), 'down': list(iv_l)}
 
     open('data/up_low.json', 'w').write(json.dumps(data))
     logging.info('data saved to data/up_low.json.')

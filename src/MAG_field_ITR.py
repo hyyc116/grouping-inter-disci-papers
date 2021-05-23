@@ -246,7 +246,7 @@ def cal_inter():
 
     sim_up_down = {}
     for i, x in enumerate(xs):
-        sim_up_down[float(x)] = [up[i], low[i]]
+        sim_up_down[str(x)] = [up[i], low[i]]
 
     selected_fos = set(
         [line.strip() for line in open('data/selected_fos.txt')])
@@ -264,7 +264,7 @@ def cal_inter():
         if subj not in selected_fos or osubj not in selected_fos:
             continue
 
-        up, low = sim_up_down[float(func)]
+        up, low = sim_up_down[str(func)]
 
         paper_labels[pid].append(label_inter(up, low, ITR))
 

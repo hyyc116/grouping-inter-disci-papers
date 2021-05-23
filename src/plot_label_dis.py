@@ -34,7 +34,8 @@ def plot_subject():
     results = {}
     for name in sorted(name_labelnum.keys()):
         results[name] = [
-            name_labelnum[name][-1], name_labelnum[0], name_labelnum[1]
+            name_labelnum[name][-1], name_labelnum[name][0],
+            name_labelnum[name][1]
         ]
 
     results['ALL'] = [label_num[-1], label_num[0], label_num[1]]

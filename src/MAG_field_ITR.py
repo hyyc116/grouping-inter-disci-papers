@@ -277,7 +277,8 @@ def cal_inter():
         label_count[label] += 1
 
     open('data/paper_inter_label.json', 'w').write(json.dumps(paper_label))
-    logging.info('data saved to data/paper_inter_label.json.')
+    logging.info(
+        f'{len(paper_label)} papers saved to data/paper_inter_label.json.')
 
     print(label_count)
 

@@ -237,10 +237,60 @@ def I0_rate():
 
 
 # 计算每一篇论文的跨学科影响力类型
+def cal_inter():
+
+    up_low = json.loads(open('data/up_low.json').read())
+    xs = up_low['xs']
+    up = up_low['up']
+    low = up_low['down']
+
+    sim_up_down = {}
+    for i, x in enumerate(xs):
+        sim_up_down[float(x)] = [up[i], low[i]]
+
+    selected_fos = set(
+        [line.strip() for line in open('data/selected_fos.txt')])
+
+    paper_labels = defaultdict(list)
+    for line in open('data/paper_ITR.csv'):
+
+        line = line.strip()
+
+        if line.startswith('pid'):
+            continue
+
+        pid, subj, osubj, func, I0, IT, ITR = line.split(',')
+
+        if subj not in selected_fos or osubj not in selected_fos:
+            continue
+
+        up, low = sim_up_down[float(func)]
+
+        paper_labels[pid].append(label_inter(up, low, ITR))
+
+    paper_label = {}
+    for pid in paper_labels.keys():
+
+        paper_label[pid] = np.max(paper_labels[pid])
+
+    open('data/paper_inter_label.json', 'w').write(json.dumps(paper_label))
+    logging.info('data saved to data/paper_inter_label.json.')
+
+
+def label_inter(up, low, ITR):
+    if ITR > up:
+        return 1
+    elif ITR < low:
+        return -1
+    else:
+        return 0
+
 
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    cor_sim_itr()
+    # cor_sim_itr()
 
     # I0_rate()
+
+    cal_inter()

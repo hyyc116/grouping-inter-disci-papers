@@ -288,7 +288,7 @@ def label_inter(up, low, ITR):
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    # cor_sim_itr()
+    cor_sim_itr()
 
     # I0_rate()
 

@@ -64,8 +64,7 @@ def cor_sim_itr():
 
             for fos2 in fos1_fos2_func[fos1].keys():
 
-                new_fos1_fos2[fos1][
-                    fos2] = fos1_fos2_func[fos1][fos2] / self_func
+                new_fos1_fos2[fos1][fos2] = fos1_fos2_func[fos1][fos2]
 
     # 相似度与转化率的关系
     all_sims = []

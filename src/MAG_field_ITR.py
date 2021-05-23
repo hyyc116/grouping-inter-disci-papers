@@ -268,12 +268,18 @@ def cal_inter():
         paper_labels[pid].append(label_inter(up, low, float(ITR)))
 
     paper_label = {}
+    label_count = defaultdict(int)
     for pid in paper_labels.keys():
 
-        paper_label[pid] = int(np.max(paper_labels[pid]))
+        label = int(np.max(paper_labels[pid]))
+        paper_label[pid] = label
+
+        label_count[label] += 1
 
     open('data/paper_inter_label.json', 'w').write(json.dumps(paper_label))
     logging.info('data saved to data/paper_inter_label.json.')
+
+    print(label_count)
 
 
 def label_inter(up, low, ITR):

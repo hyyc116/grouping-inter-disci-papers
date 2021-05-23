@@ -6,6 +6,7 @@
 4. 通过转化函数计算各个领域的转化区间
 
 '''
+from logging import log
 from basic_config import *
 
 import statsmodels.formula.api as smf
@@ -141,7 +142,7 @@ def cor_sim_itr():
     logging.info('fig saved to fig/sim_ITR.png')
 
     data = {'xs': xs, 'up': list(iv_u), 'down': list(iv_l)}
-
+    logging.info(f'{len(xs)} relations are considered.')
     open('data/up_low.json', 'w').write(json.dumps(data))
     logging.info('data saved to data/up_low.json.')
 

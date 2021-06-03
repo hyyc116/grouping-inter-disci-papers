@@ -50,6 +50,63 @@ def plot_subject():
     plt.savefig('fig/subject_inter_cater.png', dpi=600)
 
 
+def plot_citnum():
+    pid_label = json.loads(open('data/paper_inter_label.json').read())
+
+    pid_I0_label = {}
+
+    for line in open('data/paper_ITR.csv'):
+        pid, subject, Os, func, I0, It, ITR = line.strip().split(',')
+
+        pid_I0_label[pid] = num_label(int(I0))
+
+    cn_label_num = defaultdict(lambda: defaultdict(int))
+    label_num = defaultdict(int)
+    for pid in pid_I0_label.keys():
+
+        label = pid_label[pid]
+
+        I0_label = pid_I0_label[pid]
+
+        cn_label_num[I0_label][label] += 1
+
+        label_num[label] += 1
+
+    # 排序
+    results = {}
+    for name in ['[1,5]', '(5,10]', '(10,20]', '(20,50]', '(50,100]', '100+']:
+        results[name] = [
+            cn_label_num[name][-1], cn_label_num[name][0],
+            cn_label_num[name][1]
+        ]
+
+    results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
+
+    category_names = ['Domain Specific', 'Normal', 'Inter-disciplinary']
+
+    survey(results, category_names)
+
+    plt.tight_layout()
+
+    plt.savefig('fig/CN_inter_cater.png', dpi=600)
+
+
+def num_label(num):
+
+    if num <= 5:
+        return '[1,5]'
+    elif num <= 10:
+        return '(5,10]'
+    elif num <= 20:
+        return '(10,20]'
+    elif num <= 50:
+        return '(20,50]'
+    elif num <= 100:
+        return '(50,100]'
+    else:
+        return '100+'
+
+
 def survey(results, category_names):
     """
     Parameters
@@ -103,4 +160,5 @@ def survey(results, category_names):
 
 if __name__ == '__main__':
     # plt.show()
-    plot_subject()
+    # plot_subject()
+    plot_citnum()

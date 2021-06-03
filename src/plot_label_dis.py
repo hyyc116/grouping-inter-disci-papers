@@ -56,6 +56,10 @@ def plot_citnum():
     pid_I0_label = {}
 
     for line in open('data/paper_ITR.csv'):
+
+        if line.startswith('pid'):
+            continue
+
         pid, subject, Os, func, I0, It, ITR = line.strip().split(',')
 
         pid_I0_label[pid] = num_label(int(I0))

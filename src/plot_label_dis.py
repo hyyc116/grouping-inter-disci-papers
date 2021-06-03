@@ -66,7 +66,7 @@ def plot_citnum():
 
     cn_label_num = defaultdict(lambda: defaultdict(int))
     label_num = defaultdict(int)
-    for pid in pid_I0_label.keys():
+    for pid in pid_label.keys():
 
         label = pid_label[pid]
 

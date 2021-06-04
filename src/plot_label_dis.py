@@ -123,9 +123,9 @@ def plot_year():
 
         total = float(np.sum([i for i in year_label_num[year].values()]))
 
-        DPapers.append(len(year_label_num[year][-1]) / total)
-        Npapers.append(len(year_label_num[year][0]) / total)
-        Ipapers.append(len(year_label_num[year][1]) / total)
+        DPapers.append(int(year_label_num[year][-1]) / total)
+        Npapers.append(int(year_label_num[year][0]) / total)
+        Ipapers.append(int(year_label_num[year][1]) / total)
 
     plt.figure(figsize=(5, 4))
 

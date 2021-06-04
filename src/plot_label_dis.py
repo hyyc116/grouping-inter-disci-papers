@@ -131,7 +131,7 @@ def plot_year():
 
     plt.plot(years, DPapers, label='Domain Specific')
     plt.plot(years, Npapers, label='Normal')
-    plt.plot(year, Ipapers, label='Trans-discipline')
+    plt.plot(years, Ipapers, label='Trans-discipline')
 
     plt.xlabel('year')
     plt.ylabel('percent')

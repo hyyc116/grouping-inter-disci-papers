@@ -95,6 +95,54 @@ def plot_citnum():
     plt.savefig('fig/CN_inter_cater.png', dpi=600)
 
 
+# 三类随着时间的变化
+def plot_year():
+
+    pid_pubyear = json.loads(
+        open('../MAG_data_processing/data/pid_pubyear.json').read())
+
+    pid_label = json.loads(open('data/paper_inter_label.json').read())
+
+    year_label_num = defaultdict(lambda: defaultdict(int))
+
+    for pid in pid_label.keys():
+
+        label = pid_label[pid]
+
+        pubyear = int(pid_pubyear[pid])
+
+        year_label_num[pubyear][label] += 1
+
+    years = []
+    DPapers = []
+    Npapers = []
+    Ipapers = []
+    for year in sorted(year_label_num.keys()):
+
+        years.append(year)
+
+        total = float(np.sum(year_label_num[year].values()))
+
+        DPapers.append(year_label_num[-1] / total)
+        Npapers.append(year_label_num[0] / total)
+        Ipapers.append(year_label_num[1] / total)
+
+    plt.figure(figsize=(5, 4))
+
+    plt.plot(years, DPapers, label='Domain Specific')
+    plt.plot(years, Npapers, label='Normal')
+    plt.plot(year, Ipapers, label='Trans-discipline')
+
+    plt.xlabel('year')
+    plt.ylabel('percent')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/year_label_dis.png', dpi=400)
+
+    logging.info('fig saved to fig/year_label_dis.png.')
+
+
 def num_label(num):
 
     if num <= 5:
@@ -165,4 +213,6 @@ def survey(results, category_names):
 if __name__ == '__main__':
     # plt.show()
     # plot_subject()
-    plot_citnum()
+    # plot_citnum()
+
+    plot_year()

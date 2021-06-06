@@ -98,12 +98,28 @@ def plot_citnum():
 # 三类随着时间的变化
 def plot_year():
 
+    fos_name = {}
+    for line in open('data/fos_level0.txt'):
+
+        line = line.strip()
+
+        if line.startswith('fos'):
+            continue
+
+        fos, name, level = line.split(',')
+
+        fos_name[fos] = name
+
     pid_pubyear = json.loads(
         open('../MAG_data_processing/data/pid_pubyear.json').read())
 
+    pid_subject = json.loads(
+        open('../MAG_data_processing/data/pid_subject.json').read())
+
     pid_label = json.loads(open('data/paper_inter_label.json').read())
 
-    year_label_num = defaultdict(lambda: defaultdict(int))
+    year_subject_label_num = defaultdict(
+        lambda: defaultdict(lambda: defaultdict(int)))
 
     for pid in pid_label.keys():
 
@@ -111,27 +127,35 @@ def plot_year():
 
         pubyear = int(pid_pubyear[pid])
 
-        year_label_num[pubyear][label] += 1
+        subject = fos_name[pid_subject[pid]]
+
+        year_subject_label_num[pubyear][label] += 1
 
     years = []
-    DPapers = []
-    Npapers = []
-    Ipapers = []
-    for year in sorted(year_label_num.keys()):
+    DPapers = defaultdict(list)
+    Npapers = defaultdict(list)
+    Ipapers = defaultdict(list)
+    for year in sorted(year_subject_label_num.keys()):
 
         years.append(year)
 
-        total = float(np.sum([i for i in year_label_num[year].values()]))
+        for subject in year_subject_label_num[year].keys():
+            total = float(
+                np.sum([
+                    i for i in year_subject_label_num[year][subject].values()
+                ]))
 
-        DPapers.append(int(year_label_num[year][-1]) / total)
-        Npapers.append(int(year_label_num[year][0]) / total)
-        Ipapers.append(int(year_label_num[year][1]) / total)
+            DPapers[subject].append(
+                int(year_subject_label_num[year][subject][-1]) / total)
+            Npapers[subject].append(
+                int(year_subject_label_num[year][subject][0]) / total)
+            Ipapers[subject].append(
+                int(year_subject_label_num[year][subject][1]) / total)
 
-    plt.figure(figsize=(5, 4))
+    plt.figure(figsize=(7, 5))
 
-    plt.plot(years, DPapers, label='Domain Specific')
-    plt.plot(years, Npapers, label='Normal')
-    plt.plot(years, Ipapers, label='Trans-discipline')
+    for subject in sorted(DPapers.keys()):
+        plt.plot(years, DPapers[subject], label=subject)
 
     plt.xlabel('year')
     plt.ylabel('percent')
@@ -140,9 +164,39 @@ def plot_year():
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_label_dis.png', dpi=400)
+    plt.savefig('fig/year_Domain_dis.png', dpi=400)
 
-    logging.info('fig saved to fig/year_label_dis.png.')
+    logging.info('fig saved to fig/year_Domain_dis.png.')
+
+    plt.figure(figsize=(7, 5))
+
+    for subject in sorted(Npapers.keys()):
+        plt.plot(years, Npapers[subject], label=subject)
+
+    plt.xlabel('year')
+    plt.ylabel('percent')
+
+    plt.legend()
+
+    plt.tight_layout()
+
+    plt.savefig('fig/year_Normal_dis.png', dpi=400)
+    logging.info('fig saved to fig/year_Normal_dis.png.')
+
+    plt.figure(figsize=(7, 5))
+
+    for subject in sorted(Ipapers.keys()):
+        plt.plot(years, Ipapers[subject], label=subject)
+
+    plt.xlabel('year')
+    plt.ylabel('percent')
+
+    plt.legend()
+
+    plt.tight_layout()
+
+    plt.savefig('fig/year_Inter_dis.png', dpi=400)
+    logging.info('fig saved to fig/year_Inter_dis.png.')
 
 
 def num_label(num):

@@ -129,7 +129,7 @@ def plot_year():
 
         subject = fos_name[pid_subject[pid]]
 
-        year_subject_label_num[pubyear][label] += 1
+        year_subject_label_num[pubyear][subject][label] += 1
 
     years = []
     DPapers = defaultdict(list)

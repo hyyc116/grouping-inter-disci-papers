@@ -136,6 +136,8 @@ def plot_year():
     plt.xlabel('year')
     plt.ylabel('percent')
 
+    plt.legend()
+
     plt.tight_layout()
 
     plt.savefig('fig/year_label_dis.png', dpi=400)

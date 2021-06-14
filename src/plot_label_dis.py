@@ -163,7 +163,7 @@ def plot_year():
     ax.set_ylabel('percent')
 
     # plt.legend()
-    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
     # plt.tight_layout()
 
@@ -181,7 +181,7 @@ def plot_year():
     ax.set_ylabel('percent')
 
     # plt.legend()
-    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
     # plt.tight_layout()
 
@@ -198,7 +198,7 @@ def plot_year():
     ax.set_xlabel('year')
     ax.set_ylabel('percent')
 
-    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
     # plt.legend()
 

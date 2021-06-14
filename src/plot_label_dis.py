@@ -152,51 +152,60 @@ def plot_year():
             Ipapers[subject].append(
                 int(year_subject_label_num[year][subject][1]) / total)
 
-    plt.figure(figsize=(7, 5))
+    # plt.figure(figsize=(7, 5))
+    fig, axes = plt.subplots(1, 3, figsize=(15, 6))
 
+    ax = axes[0]
     for subject in sorted(DPapers.keys()):
-        plt.plot(years, DPapers[subject], label=subject)
+        ax.plot(years, DPapers[subject], label=subject)
 
-    plt.xlabel('year')
-    plt.ylabel('percent')
+    ax.set_xlabel('year')
+    ax.set_ylabel('percent')
 
-    plt.legend()
+    # plt.legend()
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
 
-    plt.tight_layout()
+    # plt.tight_layout()
 
-    plt.savefig('fig/year_Domain_dis.png', dpi=400)
+    # plt.savefig('fig/year_Domain_dis.png', dpi=400)
 
-    logging.info('fig saved to fig/year_Domain_dis.png.')
+    # logging.info('fig saved to fig/year_Domain_dis.png.')
 
-    plt.figure(figsize=(7, 5))
+    # plt.figure(figsize=(7, 5))
+    ax = axes[1]
 
     for subject in sorted(Npapers.keys()):
-        plt.plot(years, Npapers[subject], label=subject)
+        ax.plot(years, Npapers[subject], label=subject)
 
-    plt.xlabel('year')
-    plt.ylabel('percent')
+    ax.set_xlabel('year')
+    ax.set_ylabel('percent')
 
-    plt.legend()
+    # plt.legend()
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
 
-    plt.tight_layout()
+    # plt.tight_layout()
 
-    plt.savefig('fig/year_Normal_dis.png', dpi=400)
-    logging.info('fig saved to fig/year_Normal_dis.png.')
+    # plt.savefig('fig/year_Normal_dis.png', dpi=400)
+    # logging.info('fig saved to fig/year_Normal_dis.png.')
 
-    plt.figure(figsize=(7, 5))
+    # plt.figure(figsize=(7, 5))
+
+    ax = axes[2]
 
     for subject in sorted(Ipapers.keys()):
-        plt.plot(years, Ipapers[subject], label=subject)
+        ax.plot(years, Ipapers[subject], label=subject)
 
-    plt.xlabel('year')
-    plt.ylabel('percent')
+    ax.set_xlabel('year')
+    ax.set_ylabel('percent')
 
-    plt.legend()
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center')
+
+    # plt.legend()
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_Inter_dis.png', dpi=400)
-    logging.info('fig saved to fig/year_Inter_dis.png.')
+    plt.savefig('fig/year_Inter_ALL.png', dpi=400)
+    logging.info('fig saved to fig/year_Inter_ALL.png.')
 
 
 def num_label(num):

@@ -183,7 +183,7 @@ def plot_year():
     # plt.legend()
     ax.legend(bbox_to_anchor=(1.2, 0.5),
               loc='center',
-              ncol=2,
+              ncol=1,
               prop={'size': 8})
 
     # plt.tight_layout()

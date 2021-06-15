@@ -153,7 +153,7 @@ def plot_year():
                 int(year_subject_label_num[year][subject][1]) / total)
 
     # plt.figure(figsize=(7, 5))
-    fig, axes = plt.subplots(3, 1, figsize=(7, 15))
+    fig, axes = plt.subplots(3, 1, figsize=(9, 15))
 
     ax = axes[0]
     for subject in sorted(DPapers.keys()):
@@ -181,9 +181,9 @@ def plot_year():
     ax.set_ylabel('percent')
 
     # plt.legend()
-    ax.legend(bbox_to_anchor=(1.1, 0.5),
+    ax.legend(bbox_to_anchor=(1.2, 0.5),
               loc='center',
-              ncol=3,
+              ncol=2,
               prop={'size': 8})
 
     # plt.tight_layout()

@@ -244,6 +244,13 @@ def survey(results, category_names):
 
     sum_of_rows = data.sum(axis=1)
     data = data / sum_of_rows[:, np.newaxis]
+    newdata = data
+    data = []
+    for line in newdata:
+        newline = []
+        for d in line:
+            newline.append('{:.2f}'.format(d))
+        data.append(newline)
 
     print(data)
     data_cum = data.cumsum(axis=1)
@@ -271,8 +278,8 @@ def survey(results, category_names):
         text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         ax.bar_label(rects, label_type='center', color=text_color)
     ax.legend(ncol=len(category_names),
-              bbox_to_anchor=(0.5, 1),
-              loc='lower left',
+              bbox_to_anchor=(0, 1),
+              loc='center',
               fontsize='large')
 
     return fig, ax

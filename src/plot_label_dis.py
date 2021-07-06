@@ -246,15 +246,15 @@ def survey(results, category_names):
     data = data / sum_of_rows[:, np.newaxis]
     data_cum = data.cumsum(axis=1)
 
-    newdata = data
-    data = []
-    for line in newdata:
-        newline = []
-        for d in line:
-            newline.append(float('{:.2f}'.format(d * 100)))
-        data.append(newline)
-    data = np.array(data)
-    print(data)
+    # newdata = data
+    # data = []
+    # for line in newdata:
+    #     newline = []
+    #     for d in line:
+    #         newline.append(float('{:.2f}'.format(d * 100)))
+    #     data.append(newline)
+    # data = np.array(data)
+    # print(data)
     category_colors = plt.get_cmap('RdYlGn')(np.linspace(
         0.15, 0.85, data.shape[1]))
 

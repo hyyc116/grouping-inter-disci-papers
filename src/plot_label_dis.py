@@ -267,9 +267,9 @@ def survey(results, category_names):
         widths = data[:, i]
         print(widths)
         print(data_cum[:, i])
-        print(starts)
         print(labels)
         starts = data_cum[:, i] - widths
+        print(starts)
         rects = ax.barh(labels,
                         widths,
                         left=starts,

@@ -41,7 +41,7 @@ def plot_subject():
 
     results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
 
-    category_names = ['Domain Specific', 'Normal', 'Inter-disciplinary']
+    category_names = ['Domain-Specific', 'Normal', 'Transdisciplinary']
 
     survey(results, category_names)
 
@@ -86,7 +86,7 @@ def plot_citnum():
 
     results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
 
-    category_names = ['Domain Specific', 'Normal', 'Inter-disciplinary']
+    category_names = ['Domain-Specific', 'Normal', 'Transdisciplinary']
 
     survey(results, category_names)
 
@@ -271,16 +271,16 @@ def survey(results, category_names):
         text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         ax.bar_label(rects, label_type='center', color=text_color)
     ax.legend(ncol=len(category_names),
-              bbox_to_anchor=(0, 1),
+              bbox_to_anchor=(0.5, 1),
               loc='lower left',
-              fontsize='small')
+              fontsize='large')
 
     return fig, ax
 
 
 if __name__ == '__main__':
     # plt.show()
-    # plot_subject()
+    plot_subject()
     # plot_citnum()
 
-    plot_year()
+    # plot_year()

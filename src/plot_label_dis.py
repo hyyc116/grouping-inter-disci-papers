@@ -251,7 +251,7 @@ def survey(results, category_names):
     for line in newdata:
         newline = []
         for d in line:
-            newline.append(float('{:.2f}'.format(d)))
+            newline.append(float('{:.2f}'.format(d * 100)))
         data.append(newline)
     data = np.array(data)
     print(data)

@@ -253,7 +253,7 @@ def survey(results, category_names):
         for d in line:
             newline.append(float('{:.2f}'.format(d)))
         data.append(newline)
-
+    data = np.array(data)
     print(data)
     category_colors = plt.get_cmap('RdYlGn')(np.linspace(
         0.15, 0.85, data.shape[1]))

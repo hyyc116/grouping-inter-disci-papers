@@ -43,8 +43,8 @@ def plot_topic_rel():
     logging.info('topic relevance saved to data/topic_relevance.csv')
 
     ## 画热力图
-    plot_heatmap('data/mag_topic_relevance.csv', 'correlation matrix', 'field',
-                 'field', 'fig/mag_topic_rel_matrix.png')
+    plot_heatmap('data/mag_topic_relevance.csv', 'correlation matrix',
+                 'Discipline', 'Discipline', 'fig/mag_topic_rel_matrix.png')
 
 
 #转化率与学科之间的关系
@@ -294,10 +294,10 @@ def label_inter(up, low, ITR):
 
 
 if __name__ == '__main__':
-    # plot_topic_rel()
+    plot_topic_rel()
 
     # cor_sim_itr()
 
     # I0_rate()
 
-    cal_inter()
+    # cal_inter()

@@ -265,9 +265,9 @@ def survey(results, category_names):
 
     for i, (colname, color) in enumerate(zip(category_names, category_colors)):
         widths = data[:, i]
-        print(widths)
+        print('width:', widths)
         print(data_cum[:, i])
-        print(labels)
+        print('labels:', labels)
         starts = data_cum[:, i] - widths
         print(starts)
         rects = ax.barh(labels,
@@ -282,7 +282,7 @@ def survey(results, category_names):
         ax.bar_label(rects, label_type='center', color=text_color)
     ax.legend(ncol=len(category_names),
               bbox_to_anchor=(0, 1),
-              loc='center',
+              loc='low left',
               fontsize='large')
 
     return fig, ax

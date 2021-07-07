@@ -90,6 +90,8 @@ def plot_citnum():
 
     survey(results, category_names)
 
+    plt.ylabel('Citation count')
+
     plt.tight_layout()
 
     plt.savefig('fig/CN_inter_cater.png', dpi=600)
@@ -294,7 +296,7 @@ def survey(results, category_names):
 
 if __name__ == '__main__':
     # plt.show()
-    plot_subject()
-    # plot_citnum()
+    # plot_subject()
+    plot_citnum()
 
     # plot_year()

@@ -41,7 +41,7 @@ def plot_subject():
 
     results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
 
-    category_names = ['Domain-Specific', 'Normal', 'Transdisciplinary']
+    category_names = ['Domain-specific', 'Normal', 'Transdisciplinary']
 
     survey(results, category_names)
 
@@ -86,7 +86,7 @@ def plot_citnum():
 
     results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
 
-    category_names = ['Domain-Specific', 'Normal', 'Transdisciplinary']
+    category_names = ['Domain-specific', 'Normal', 'Transdisciplinary']
 
     survey(results, category_names)
 

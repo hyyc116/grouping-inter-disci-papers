@@ -281,7 +281,7 @@ def survey(results, category_names):
         text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         ax.bar_label(rects, label_type='center', color=text_color, fmt='.2%')
     ax.legend(ncol=len(category_names),
-              bbox_to_anchor=(0.5, 1.1),
+              bbox_to_anchor=(0.5, 1),
               loc='lower center',
               fontsize='large')
 

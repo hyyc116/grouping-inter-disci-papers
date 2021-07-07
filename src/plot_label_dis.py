@@ -280,7 +280,7 @@ def survey(results, category_names):
         r, g, b, _ = color
         text_color = 'white' if r * g * b < 0.5 else 'darkgrey'
         ax.bar_label(rects,
-                     labels=widths,
+                     labels=widths * 100,
                      label_type='center',
                      color=text_color,
                      fmt='%.2f')

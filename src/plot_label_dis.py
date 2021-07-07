@@ -282,7 +282,7 @@ def survey(results, category_names):
         ax.bar_label(rects, label_type='center', color=text_color, fmt='%.2f')
     ax.legend(ncol=len(category_names),
               bbox_to_anchor=(0.5, 1.1),
-              loc='center',
+              loc='lower center',
               fontsize='large')
 
     return fig, ax

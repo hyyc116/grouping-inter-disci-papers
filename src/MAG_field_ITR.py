@@ -172,9 +172,9 @@ def cor_sim_itr():
     plt.annotate(f'{normal_labels}',
                  xy=(normal[0], normal[1]),
                  xycoords='data',
-                 xytext=(0.8, 0.2),
+                 xytext=(0.5, 0.2),
                  textcoords='axes fraction',
-                 arrowprops=dict(facecolor='b', shrink=0.05),
+                 arrowprops=dict(arrowstyle="->"),
                  horizontalalignment='center',
                  verticalalignment='bottom')
 

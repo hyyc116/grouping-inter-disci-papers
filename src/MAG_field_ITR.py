@@ -126,7 +126,7 @@ def cor_sim_itr():
                     outlier = (x, y)
                     outlier_labels = f'({fos_name[fos1]}, {fos_name[fos2]})'
 
-            if x > 0.1 and x < 0.15 and y < 0.7:
+            if x > 0.08 and x < 0.1 and y < 0.8:
 
                 if y > normal[1]:
                     normal = (x, y)

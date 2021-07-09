@@ -101,6 +101,9 @@ def cor_sim_itr():
 
     xs = []
     ys = []
+
+    outlier = None
+    outlier_labels = None
     for fos1 in fos1_fos2_itrs.keys():
 
         for fos2 in fos1_fos2_itrs[fos1].keys():
@@ -114,6 +117,10 @@ def cor_sim_itr():
             if y > 1 and x < 0.03:
                 print(fos_name[fos2], fos_name[fos1])
                 print(x, y)
+
+                outlier_labels = [fos_name[fos1], fos_name[fos2]]
+
+                outlier = (x, y)
 
             xs.append(x)
             ys.append(y)
@@ -147,6 +154,8 @@ def cor_sim_itr():
              label="log(ITR) = 0.0661*log(DA)-0.1783")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
+
+    plt.text(outlier[0], outlier[1], outlier_labels)
 
     plt.ylim(0.01, 10)
     plt.legend(loc='best')

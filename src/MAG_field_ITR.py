@@ -49,6 +49,19 @@ def plot_topic_rel():
 
 #转化率与学科之间的关系
 def cor_sim_itr():
+
+    fos_name = {}
+    for line in open('data/fos_level0.txt'):
+
+        line = line.strip()
+
+        if line.startswith('fos'):
+            continue
+
+        fos, name, level = line.split(',')
+
+        fos_name[fos] = name
+
     # 两个学科的相似度
     fos1_fos2_func = json.loads(open('data/fos1_fos2_func.json').read())
 
@@ -95,8 +108,15 @@ def cor_sim_itr():
             if fos1 not in selected_funcs or fos2 not in selected_funcs or fos1 == fos2:
                 continue
 
-            xs.append(new_fos1_fos2[fos1][fos2])
-            ys.append(np.mean(fos1_fos2_itrs[fos1][fos2]))
+            x = new_fos1_fos2[fos1][fos2]
+            y = np.mean(fos1_fos2_itrs[fos1][fos2])
+
+            if y > 0.8:
+                print(fos_name[fos2], fos_name[fos1])
+                print(x, y)
+
+            xs.append(x)
+            ys.append(y)
 
     logging.info(f'{len(selected_funcs)} are selected.')
     open('data/selected_fos.txt', 'w').write('\n'.join(selected_funcs))
@@ -124,7 +144,7 @@ def cor_sim_itr():
     plt.plot(xs,
              np.exp(res.fittedvalues),
              'b',
-             label="log(ITR) = 0.0661*log(FA)-0.1783")
+             label="log(ITR) = 0.0661*log(DA)-0.1783")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 

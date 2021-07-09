@@ -104,6 +104,11 @@ def cor_sim_itr():
 
     outlier = (0, 0)
     outlier_labels = None
+
+    normal = (0, 0)
+    normal_labels = None
+
+    normal = ()
     for fos1 in fos1_fos2_itrs.keys():
 
         for fos2 in fos1_fos2_itrs[fos1].keys():
@@ -121,6 +126,12 @@ def cor_sim_itr():
                 if y > outlier[1]:
                     outlier = (x, y)
                     outlier_labels = f'({fos_name[fos1]}, {fos_name[fos2]})'
+
+            if x > 0.1 and x < 0.2 and y < 0.6:
+
+                if y > normal[1]:
+                    normal = (x, y)
+                    normal_labels = f'({fos_name[fos1]}, {fos_name[fos2]})'
 
             xs.append(x)
             ys.append(y)
@@ -155,9 +166,18 @@ def cor_sim_itr():
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 
-    text_kwargs = dict(ha='center', va='lower', color='r')
+    text_kwargs = dict(ha='center', va='bottom', color='r')
 
     plt.text(outlier[0], outlier[1], outlier_labels, **text_kwargs)
+
+    plt.annotate(f'{normal_labels}',
+                 xy=(normal[0], normal[1]),
+                 xycoords='data',
+                 xytext=(0.2, 0.8),
+                 textcoords='axes fraction',
+                 arrowprops=dict(facecolor='black', shrink=0.05),
+                 horizontalalignment='center',
+                 verticalalignment='bottom')
 
     plt.ylim(0.01, 10)
     plt.legend(loc='best')

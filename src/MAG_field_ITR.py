@@ -108,7 +108,6 @@ def cor_sim_itr():
     normal = (0, 0)
     normal_labels = None
 
-    normal = ()
     for fos1 in fos1_fos2_itrs.keys():
 
         for fos2 in fos1_fos2_itrs[fos1].keys():

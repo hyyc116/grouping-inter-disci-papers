@@ -180,7 +180,7 @@ def plot_year():
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_all.png')
+    plt.savefig('fig/year_all.png', dpi=400)
 
     fig, axes = plt.subplots(3, 1, figsize=(9, 15))
 

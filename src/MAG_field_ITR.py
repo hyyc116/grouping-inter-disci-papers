@@ -121,7 +121,10 @@ def cor_sim_itr():
 
     prstd, iv_l, iv_u = wls_prediction_std(res)
 
-    plt.plot(xs, np.exp(res.fittedvalues), 'b', label="fitted line")
+    plt.plot(xs,
+             np.exp(res.fittedvalues),
+             'b',
+             label="log(ITR) = 0.0661*log(FA)-0.1783")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 
@@ -296,8 +299,8 @@ def label_inter(up, low, ITR):
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    # cor_sim_itr()
+    cor_sim_itr()
 
     # I0_rate()
 
-    cal_inter()
+    # cal_inter()

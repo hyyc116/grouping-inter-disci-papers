@@ -102,7 +102,7 @@ def cor_sim_itr():
     xs = []
     ys = []
 
-    outlier = None
+    outlier = (0, 0)
     outlier_labels = None
     for fos1 in fos1_fos2_itrs.keys():
 
@@ -118,9 +118,9 @@ def cor_sim_itr():
                 print(fos_name[fos2], fos_name[fos1])
                 print(x, y)
 
-                outlier_labels = [fos_name[fos1], fos_name[fos2]]
-
-                outlier = (x, y)
+                if y > outlier[1]:
+                    outlier = (x, y)
+                    outlier_labels = [fos_name[fos1], fos_name[fos2]]
 
             xs.append(x)
             ys.append(y)

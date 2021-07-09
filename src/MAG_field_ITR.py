@@ -174,7 +174,7 @@ def cor_sim_itr():
                  xycoords='data',
                  xytext=(0.8, 0.2),
                  textcoords='axes fraction',
-                 arrowprops=dict(facecolor='black', shrink=0.05),
+                 arrowprops=dict(facecolor='b', shrink=0.05),
                  horizontalalignment='center',
                  verticalalignment='bottom')
 

@@ -150,9 +150,9 @@ def plot_year():
 
         years.append(year)
         total = float(np.sum([i for i in year_label_num[year].values()]))
-        DApapers.append(year_label_num[year][-1])
-        NApapers.append(year_label_num[year][0])
-        IApapers.append(year_label_num[year][1])
+        DApapers.append(year_label_num[year][-1] / total)
+        NApapers.append(year_label_num[year][0] / total)
+        IApapers.append(year_label_num[year][1] / total)
 
         for subject in year_subject_label_num[year].keys():
             total = float(
@@ -321,7 +321,7 @@ def survey(results, category_names):
 
 if __name__ == '__main__':
     # plt.show()
-    plot_subject()
-    plot_citnum()
+    # plot_subject()
+    # plot_citnum()
 
     plot_year()

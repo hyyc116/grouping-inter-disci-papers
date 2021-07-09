@@ -176,6 +176,11 @@ def plot_year():
     plt.xlabel('Year')
     plt.ylabel('Proportion')
 
+    plt.legend(bbox_to_anchor=(0, 0.5),
+               loc='upper center',
+               ncol=3,
+               prop={'size': 8})
+
     plt.tight_layout()
 
     plt.savefig('fig/year_all.png')

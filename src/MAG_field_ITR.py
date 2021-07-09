@@ -155,7 +155,9 @@ def cor_sim_itr():
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 
-    plt.text(outlier[0], outlier[1], outlier_labels)
+    text_kwargs = dict(ha='center', va='lower', color='r')
+
+    plt.text(outlier[0], outlier[1], outlier_labels, **text_kwargs)
 
     plt.ylim(0.01, 10)
     plt.legend(loc='best')

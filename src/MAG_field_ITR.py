@@ -111,7 +111,7 @@ def cor_sim_itr():
             x = new_fos1_fos2[fos1][fos2]
             y = np.mean(fos1_fos2_itrs[fos1][fos2])
 
-            if y > 0.8:
+            if y > 1 and x < 0.03:
                 print(fos_name[fos2], fos_name[fos1])
                 print(x, y)
 

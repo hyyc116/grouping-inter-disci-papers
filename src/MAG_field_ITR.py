@@ -126,7 +126,7 @@ def cor_sim_itr():
                     outlier = (x, y)
                     outlier_labels = f'({fos_name[fos1]}, {fos_name[fos2]})'
 
-            if x > 0.1 and x < 0.2 and y < 0.7:
+            if x > 0.1 and x < 0.15 and y < 0.7:
 
                 if y > normal[1]:
                     normal = (x, y)
@@ -172,7 +172,7 @@ def cor_sim_itr():
     plt.annotate(f'{normal_labels}',
                  xy=(normal[0], normal[1]),
                  xycoords='data',
-                 xytext=(0.5, 0.2),
+                 xytext=(0.7, 0.2),
                  textcoords='axes fraction',
                  arrowprops=dict(arrowstyle="->"),
                  horizontalalignment='center',

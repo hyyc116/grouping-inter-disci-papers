@@ -120,6 +120,8 @@ def plot_year():
 
     pid_label = json.loads(open('data/paper_inter_label.json').read())
 
+    year_label_num = defaultdict(lambda: defaultdict(int))
+
     year_subject_label_num = defaultdict(
         lambda: defaultdict(lambda: defaultdict(int)))
 
@@ -129,17 +131,28 @@ def plot_year():
 
         pubyear = int(pid_pubyear[pid])
 
+        year_label_num[pubyear][label] += 1
+
         subject = fos_name[pid_subject[pid]]
 
         year_subject_label_num[pubyear][subject][label] += 1
 
     years = []
+
+    DApapers = []
+    NApapers = []
+    IApapers = []
+
     DPapers = defaultdict(list)
     Npapers = defaultdict(list)
     Ipapers = defaultdict(list)
     for year in sorted(year_subject_label_num.keys()):
 
         years.append(year)
+
+        DApapers.append(year_label_num[year][-1])
+        NApapers.append(year_label_num[year][0])
+        IApapers.append(year_label_num[year][1])
 
         for subject in year_subject_label_num[year].keys():
             total = float(
@@ -154,15 +167,27 @@ def plot_year():
             Ipapers[subject].append(
                 int(year_subject_label_num[year][subject][1]) / total)
 
-    # plt.figure(figsize=(7, 5))
+    plt.figure(figsize=(5, 4))
+
+    plt.plot(years, DApapers, label='Domain-specific')
+    plt.plot(years, NApapers, label='Normal')
+    plt.plot(years, IApapers, label='Transdiscipline')
+
+    plt.xlabel('Year')
+    plt.ylabel('Proportion')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/year_all.png')
+
     fig, axes = plt.subplots(3, 1, figsize=(9, 15))
 
     ax = axes[0]
     for subject in sorted(DPapers.keys()):
         ax.plot(years, DPapers[subject], label=subject)
 
-    ax.set_xlabel('year')
-    ax.set_ylabel('percent')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Proportion')
 
     # plt.legend()
     # ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
@@ -179,8 +204,8 @@ def plot_year():
     for subject in sorted(Npapers.keys()):
         ax.plot(years, Npapers[subject], label=subject)
 
-    ax.set_xlabel('year')
-    ax.set_ylabel('percent')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Proportion')
 
     # plt.legend()
     ax.legend(bbox_to_anchor=(1.2, 0.5),
@@ -200,8 +225,8 @@ def plot_year():
     for subject in sorted(Ipapers.keys()):
         ax.plot(years, Ipapers[subject], label=subject)
 
-    ax.set_xlabel('year')
-    ax.set_ylabel('percent')
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Proportion')
 
     # ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
@@ -297,6 +322,6 @@ def survey(results, category_names):
 if __name__ == '__main__':
     # plt.show()
     # plot_subject()
-    plot_citnum()
+    # plot_citnum()
 
-    # plot_year()
+    plot_year()

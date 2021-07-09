@@ -120,7 +120,7 @@ def cor_sim_itr():
 
                 if y > outlier[1]:
                     outlier = (x, y)
-                    outlier_labels = [fos_name[fos1], fos_name[fos2]]
+                    outlier_labels = f'({fos_name[fos1]}, {fos_name[fos2]})'
 
             xs.append(x)
             ys.append(y)

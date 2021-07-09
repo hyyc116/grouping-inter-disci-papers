@@ -177,7 +177,7 @@ def plot_year():
     plt.ylabel('Proportion')
 
     plt.legend(bbox_to_anchor=(0, 0.5),
-               loc='upper center',
+               loc='center upper',
                ncol=3,
                prop={'size': 8})
 

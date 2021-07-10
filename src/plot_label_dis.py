@@ -67,6 +67,30 @@ def plot_citnum(isRank=False):
 
         pid_I0[pid] = I0
 
+    # I0的CDF
+
+    value_counter = Counter(list(pid_I0.values()))
+    xs = []
+    ys = []
+
+    for v in sorted(value_counter.keys()):
+        xs.append(v)
+        ys.append(value_counter[v])
+
+    total = np.sum(ys)
+    ys = [np.sum(ys[:i + 1] for i in range(len(ys)))]
+
+    plt.figure(figsize=(5, 4))
+
+    plt.plot(xs, ys)
+
+    plt.xlabel('$I_0$')
+    plt.ylabel('CDF')
+
+    plt.tight_layout()
+
+    plt.savefig('fig/I0_CDF.png', dpi=600)
+
     if isRank:
         pid_rank = {}
 
@@ -219,7 +243,7 @@ def plot_year():
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_all.png', dpi=400)
+    plt.savefig('fig/year_all.png', dpi=600)
 
     fig, axes = plt.subplots(3, 1, figsize=(9, 15))
 

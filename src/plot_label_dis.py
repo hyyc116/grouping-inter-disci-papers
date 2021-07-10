@@ -247,7 +247,7 @@ def plot_year():
 
     plt.savefig('fig/year_all.png', dpi=800)
 
-    fig, axes = plt.subplots(3, 1, figsize=(9, 15))
+    fig, axes = plt.subplots(3, 1, figsize=(5, 14))
 
     ax = axes[0]
     for subject in sorted(DPapers.keys()):
@@ -300,9 +300,13 @@ def plot_year():
     # plt.legend()
 
     handles, labels = ax.get_legend_handles_labels()
-    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, 0))
+    fig.legend(handles,
+               labels,
+               loc='upper center',
+               bbox_to_anchor=(0.5, 0),
+               col=4)
 
-    plt.tight_layout()
+    # plt.tight_layout()
 
     plt.savefig('fig/year_Inter_ALL.png', dpi=800)
     logging.info('fig saved to fig/year_Inter_ALL.png.')

@@ -50,10 +50,11 @@ def plot_subject():
     plt.savefig('fig/subject_inter_cater.png', dpi=600)
 
 
-def plot_citnum():
+def plot_citnum(isRank=False):
     pid_label = json.loads(open('data/paper_inter_label.json').read())
 
     pid_I0_label = {}
+    pid_I0 = {}
 
     for line in open('data/paper_ITR.csv'):
 
@@ -63,6 +64,20 @@ def plot_citnum():
         pid, subject, Os, func, I0, It, ITR = line.strip().split(',')
 
         pid_I0_label[pid] = num_label(int(I0))
+
+        pid_I0[pid] = I0
+
+    if isRank:
+        pid_rank = {}
+
+        ranked_pids = sorted(pid_I0_label.keys(), key=lambda x: pid_I0[x])
+
+        total = len(ranked_pids)
+        for i, pid in enumerate(ranked_pids):
+
+            pid_rank[pid] = i / total
+
+        rank_label_num = defaultdict(lambda: defaultdict(int))
 
     cn_label_num = defaultdict(lambda: defaultdict(int))
     label_num = defaultdict(int)
@@ -75,6 +90,10 @@ def plot_citnum():
         cn_label_num[I0_label][label] += 1
 
         label_num[label] += 1
+
+        if isRank:
+            rl = rank_2_label(pid_rank[pid])
+            rank_label_num[rl][label] += 1
 
     # 排序
     results = {}
@@ -95,6 +114,26 @@ def plot_citnum():
     plt.tight_layout()
 
     plt.savefig('fig/CN_inter_cater.png', dpi=600)
+
+    if isRank:
+        results = {}
+        for name in ['0%-20%', '20%-40%', '40%-60%', '60%-80%', '80%+']:
+            results[name] = [
+                rank_label_num[name][-1], rank_label_num[name][0],
+                rank_label_num[name][1]
+            ]
+
+        results['ALL'] = [label_num[-1], label_num[0], label_num[1]]
+
+        category_names = ['Domain-specific', 'Normal', 'Transdisciplinary']
+
+        survey(results, category_names)
+
+        plt.ylabel('Citation rank')
+
+        plt.tight_layout()
+
+        plt.savefig('fig/CN_rank_inter_cater.png', dpi=600)
 
 
 # 三类随着时间的变化
@@ -256,6 +295,20 @@ def num_label(num):
         return '100+'
 
 
+def rank_2_label(rank):
+
+    if rank <= 0.2:
+        return '0%-20%'
+    elif rank <= 0.4:
+        return '20%-40%'
+    elif rank <= 0.6:
+        return '40%-60%'
+    elif rank <= 0.8:
+        return '60%-80%'
+    else:
+        return '80%+'
+
+
 def survey(results, category_names):
     """
     Parameters
@@ -324,6 +377,6 @@ def survey(results, category_names):
 if __name__ == '__main__':
     # plt.show()
     # plot_subject()
-    # plot_citnum()
+    plot_citnum()
 
-    plot_year()
+    # plot_year()

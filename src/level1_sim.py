@@ -9,7 +9,8 @@ def level1_sim():
         open('../select-first-topic/data/pid_level1.json').read())
 
     logging.info('loading paper year ...')
-    paper_year = json.loads(open('data/pid_pubyear.json').read())
+    paper_year = json.loads(
+        open('../MAG_data_processing/data/pid_pubyear.json').read())
 
     sql = 'select paper_id,paper_reference_id from mag_core.paper_references'
 

@@ -78,7 +78,7 @@ def plot_citnum(isRank=False):
         ys.append(value_counter[v])
 
     total = np.sum(ys)
-    ys = [np.sum(ys[:i + 1] for i in range(len(ys)))]
+    ys = [np.sum(ys[:i + 1]) for i in range(len(ys))]
 
     plt.figure(figsize=(5, 4))
 

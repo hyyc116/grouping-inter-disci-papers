@@ -304,7 +304,7 @@ def plot_year():
                labels,
                loc='upper center',
                bbox_to_anchor=(0.5, 0),
-               col=4)
+               ncol=4)
 
     # plt.tight_layout()
 

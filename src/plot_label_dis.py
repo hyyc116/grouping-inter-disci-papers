@@ -245,7 +245,7 @@ def plot_year():
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_all.png', dpi=600)
+    plt.savefig('fig/year_all.png', dpi=800)
 
     fig, axes = plt.subplots(3, 1, figsize=(9, 15))
 
@@ -275,10 +275,10 @@ def plot_year():
     ax.set_ylabel('Proportion')
 
     # plt.legend()
-    ax.legend(bbox_to_anchor=(1.2, 0.5),
-              loc='center',
-              ncol=1,
-              prop={'size': 8})
+    # ax.legend(bbox_to_anchor=(1.2, 0.5),
+    #           loc='center',
+    #           ncol=1,
+    #           prop={'size': 8})
 
     # plt.tight_layout()
 
@@ -299,9 +299,12 @@ def plot_year():
 
     # plt.legend()
 
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc='upper center', bbox_to_anchor=(0.5, 0))
+
     plt.tight_layout()
 
-    plt.savefig('fig/year_Inter_ALL.png', dpi=400)
+    plt.savefig('fig/year_Inter_ALL.png', dpi=800)
     logging.info('fig saved to fig/year_Inter_ALL.png.')
 
 
@@ -403,6 +406,6 @@ def survey(results, category_names):
 if __name__ == '__main__':
     # plt.show()
     # plot_subject()
-    plot_citnum(isRank=True)
+    # plot_citnum(isRank=True)
 
-    # plot_year()
+    plot_year()

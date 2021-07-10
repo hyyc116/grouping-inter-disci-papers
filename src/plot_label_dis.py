@@ -65,7 +65,7 @@ def plot_citnum(isRank=False):
 
         pid_I0_label[pid] = num_label(int(I0))
 
-        pid_I0[pid] = I0
+        pid_I0[pid] = int(I0)
 
     # I0的CDF
 
@@ -86,6 +86,8 @@ def plot_citnum(isRank=False):
 
     plt.xlabel('$I_0$')
     plt.ylabel('CDF')
+
+    plt.xscale('log')
 
     plt.tight_layout()
 

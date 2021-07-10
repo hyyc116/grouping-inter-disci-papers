@@ -69,7 +69,7 @@ def plot_citnum(isRank=False):
 
     # I0的CDF
 
-    value_counter = Counter(list(pid_I0.values()))
+    value_counter = Counter([int(i) for i in pid_I0.values()])
     xs = []
     ys = []
 

@@ -6,7 +6,7 @@ def level1_sim():
 
     logging.info('loading paper field ...')
     paper_field = json.loads(
-        open('../MAG_data_processing/data/pid_level1.json').read())
+        open('../select-first-topic/data/pid_level1.json').read())
 
     logging.info('loading paper year ...')
     paper_year = json.loads(open('data/pid_pubyear.json').read())

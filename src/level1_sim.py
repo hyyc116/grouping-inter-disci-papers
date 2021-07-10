@@ -44,6 +44,8 @@ def level1_sim():
 
             for fos2 in fos2s:
 
+                
+
                 fos1_fos2_refnum[fos1][fos2] += 1
 
     open('data/level1_fos1_fos2_refnum.json',

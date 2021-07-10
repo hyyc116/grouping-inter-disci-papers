@@ -12,6 +12,8 @@ import networkx as nx
 from networkx.algorithms import isomorphism
 from collections import Counter
 import scipy
+import psycopg2
+
 from scipy.stats import zscore
 '''
 ==================

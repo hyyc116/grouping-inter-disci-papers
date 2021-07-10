@@ -247,14 +247,16 @@ def plot_year():
 
     plt.savefig('fig/year_all.png', dpi=800)
 
-    fig, axes = plt.subplots(3, 1, figsize=(8, 16))
+    fig, axes = plt.subplots(3, 1, figsize=(7, 16))
 
     ax = axes[0]
     for subject in sorted(DPapers.keys()):
         ax.plot(years, DPapers[subject], label=subject)
 
-    ax.set_xlabel('Year')
+    ax.set_xlabel('Year\n(a)')
     ax.set_ylabel('Proportion')
+
+    ax.set_title('Domain-specific')
 
     # plt.legend()
     # ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
@@ -271,8 +273,10 @@ def plot_year():
     for subject in sorted(Npapers.keys()):
         ax.plot(years, Npapers[subject], label=subject)
 
-    ax.set_xlabel('Year')
+    ax.set_xlabel('Year\n(b)')
     ax.set_ylabel('Proportion')
+
+    ax.set_title('Normal')
 
     # plt.legend()
     # ax.legend(bbox_to_anchor=(1.2, 0.5),
@@ -292,8 +296,9 @@ def plot_year():
     for subject in sorted(Ipapers.keys()):
         ax.plot(years, Ipapers[subject], label=subject)
 
-    ax.set_xlabel('Year')
+    ax.set_xlabel('Year\n(c)')
     ax.set_ylabel('Proportion')
+    ax.set_title('Transdiscipline')
 
     ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
@@ -309,7 +314,7 @@ def plot_year():
 
     plt.tight_layout()
 
-    plt.savefig('fig/year_Inter_ALL.png', dpi=800)
+    plt.savefig('fig/year_Inter_ALL.png', dpi=400)
     logging.info('fig saved to fig/year_Inter_ALL.png.')
 
 

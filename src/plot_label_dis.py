@@ -295,17 +295,17 @@ def plot_year():
     ax.set_xlabel('Year')
     ax.set_ylabel('Proportion')
 
-    # ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
+    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
     # plt.legend()
 
-    lines_labels = [ax.get_legend_handles_labels() for ax in fig.axes]
-    lines, labels = [sum(lol, []) for lol in zip(*lines_labels)]
-    plt.figlegend(lines,
-                  labels,
-                  loc='upper center',
-                  bbox_to_anchor=(0.5, 0),
-                  ncol=4)
+    # lines_labels = [ax.get_legend_handles_labels() for ax in fig.axes]
+    # lines, labels = [sum(lol, []) for lol in zip(*lines_labels)]
+    # plt.figlegend(lines,
+    #               labels,
+    #               loc='upper center',
+    #               bbox_to_anchor=(0.5, 0),
+    #               ncol=4)
 
     plt.tight_layout()
 

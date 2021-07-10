@@ -247,7 +247,7 @@ def plot_year():
 
     plt.savefig('fig/year_all.png', dpi=800)
 
-    fig, axes = plt.subplots(3, 1, figsize=(5, 14))
+    fig, axes = plt.subplots(3, 1, figsize=(9, 14))
 
     ax = axes[0]
     for subject in sorted(DPapers.keys()):

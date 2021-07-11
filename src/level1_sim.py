@@ -88,8 +88,12 @@ def level1_sim():
 
 def plot_level1_heatmap():
     ## 画热力图
-    plot_heatmap('data/level1_mag_topic_relevance.csv', 'correlation matrix',
-                 'Discipline', 'Discipline', 'fig/mag_topic_rel_matrix.png')
+    plot_heatmap('data/level1_mag_topic_relevance.csv',
+                 'correlation matrix',
+                 'Discipline',
+                 'Discipline',
+                 'fig/mag_topic_rel_matrix.png',
+                 large=True)
 
 
 if __name__ == '__main__':

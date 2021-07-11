@@ -223,10 +223,14 @@ def hist_2_bar(data, bins=50):
     return [x for x in bins[:-1]], [x for x in n]
 
 
-def plot_heatmap(path, title, xlabel, ylabel, outpath):
+def plot_heatmap(path, title, xlabel, ylabel, outpath, large=False):
     data = pd.read_csv(path)
     df = pd.pivot_table(data=data, index='t2', values='rel', columns='t1')
+
     plt.figure(figsize=(7.5, 6))
+    if large:
+        plt.figure(figsize=(50, 50))
+
     ax = sns.heatmap(df,
                      cmap='YlGnBu',
                      robust=True,
@@ -247,4 +251,4 @@ def plot_heatmap(path, title, xlabel, ylabel, outpath):
 
     # plt.xlabel()
     plt.tight_layout()
-    plt.savefig(outpath, dpi=800)
+    plt.savefig(outpath, dpi=200)

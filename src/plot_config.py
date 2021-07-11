@@ -249,6 +249,10 @@ def plot_heatmap(path, title, xlabel, ylabel, outpath, large=False):
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
 
+    if large:
+        plt.gca().axes.get_xaxis().set_visible(False)
+        plt.gca().axes.get_yaxis().set_visible(False)
+
     # plt.xlabel()
     plt.tight_layout()
-    plt.savefig(outpath, dpi=200)
+    plt.savefig(outpath, dpi=400)

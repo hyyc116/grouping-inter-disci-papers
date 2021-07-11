@@ -229,7 +229,7 @@ def plot_heatmap(path, title, xlabel, ylabel, outpath, large=False):
 
     plt.figure(figsize=(7.5, 6))
     if large:
-        plt.figure(figsize=(15, 12.5))
+        plt.figure(figsize=(7.5, 6))
 
     ax = sns.heatmap(df,
                      cmap='YlGnBu',

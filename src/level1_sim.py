@@ -44,8 +44,6 @@ def level1_sim():
 
             for fos2 in fos2s:
 
-                
-
                 fos1_fos2_refnum[fos1][fos2] += 1
 
     open('data/level1_fos1_fos2_refnum.json',
@@ -87,11 +85,15 @@ def level1_sim():
     open('data/level1_mag_topic_relevance.csv', 'w').write('\n'.join(rels))
     logging.info('topic relevance saved to data/topic_relevance.csv')
 
+
+def plot_level1_heatmap():
     ## 画热力图
-    plot_heatmap('data/mag_level1_topic_relevance.csv', 'correlation matrix',
+    plot_heatmap('data/level1_mag_topic_relevance.csv', 'correlation matrix',
                  'Discipline', 'Discipline', 'fig/mag_topic_rel_matrix.png')
 
 
 if __name__ == '__main__':
 
-    level1_sim()
+    # level1_sim()
+
+    plot_level1_heatmap()

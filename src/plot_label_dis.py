@@ -415,7 +415,7 @@ def survey(results, category_names):
 
 if __name__ == '__main__':
     # plt.show()
-    # plot_subject()
-    # plot_citnum(isRank=True)
+    plot_subject()
+    plot_citnum(isRank=True)
 
     plot_year()

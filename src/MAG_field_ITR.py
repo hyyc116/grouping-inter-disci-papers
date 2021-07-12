@@ -189,7 +189,7 @@ def cor_sim_itr():
     plt.yscale('log')
 
     plt.xlabel('Discipline affinity')
-    plt.ylabel('$TDI_{D_0 \rightarrow D_k}$')
+    plt.ylabel('$TDI_{D_0 \\rightarrow D_k}$')
 
     plt.tight_layout()
 

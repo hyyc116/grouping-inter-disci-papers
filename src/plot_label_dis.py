@@ -84,8 +84,8 @@ def plot_citnum(isRank=False):
 
     plt.plot(xs, ys)
 
-    plt.xlabel('$I_0$')
-    plt.ylabel('CDF')
+    plt.xlabel('Number of citations within the original discipline')
+    plt.ylabel('Probability')
 
     plt.xscale('log')
 
@@ -236,7 +236,7 @@ def plot_year():
 
     plt.plot(years, DApapers, label='Domain-specific')
     plt.plot(years, NApapers, label='Normal')
-    plt.plot(years, IApapers, label='Transdiscipline')
+    plt.plot(years, IApapers, label='Transdisciplinary')
 
     plt.xlabel('Year')
     plt.ylabel('Proportion')

@@ -189,7 +189,7 @@ def cor_sim_itr():
     plt.yscale('log')
 
     plt.xlabel('Discipline affinity')
-    plt.ylabel('ITR')
+    plt.ylabel('$TDI_{D_0 \rightarrow D_k}$')
 
     plt.tight_layout()
 
@@ -359,8 +359,8 @@ def label_inter(up, low, ITR):
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    # cor_sim_itr()
+    cor_sim_itr()
 
     # I0_rate()
 
-    cal_inter()
+    # cal_inter()

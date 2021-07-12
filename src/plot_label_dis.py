@@ -298,7 +298,7 @@ def plot_year():
 
     ax.set_xlabel('Year\n(c)')
     ax.set_ylabel('Proportion')
-    ax.set_title('Transdiscipline')
+    ax.set_title('Transdisciplinary')
 
     ax.legend(bbox_to_anchor=(0.5, -0.2), loc='center', ncol=4)
 
@@ -415,7 +415,7 @@ def survey(results, category_names):
 
 if __name__ == '__main__':
     # plt.show()
-    plot_subject()
-    # plot_citnum(isRank=True)
+    # plot_subject()
+    plot_citnum(isRank=True)
 
     plot_year()

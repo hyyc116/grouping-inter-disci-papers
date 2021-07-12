@@ -91,6 +91,10 @@ def cor_sim_itr():
 
         pid, subj, osubj, func, I0, IT, ITR = line.split(',')
 
+        # 这里画图不需要自己的学科
+        if subj == osubj:
+            continue
+
         all_sims.append(float(func))
 
         ITR = float(ITR)
@@ -315,17 +319,23 @@ def cal_inter():
 
         if subj not in selected_fos or osubj not in selected_fos:
             continue
+        if sim_up_down.get(str(func), None) is None:
+            paper_labels[pid].append(-1)
+        else:
+            up, low = sim_up_down[str(func)]
 
-        up, low = sim_up_down[str(func)]
-
-        paper_labels[pid].append(
-            label_inter(np.exp(up), np.exp(low), float(ITR)))
+            paper_labels[pid].append(
+                label_inter(np.exp(up), np.exp(low), float(ITR)))
 
     paper_label = {}
     label_count = defaultdict(int)
     for pid in paper_labels.keys():
 
         label = int(np.max(paper_labels[pid]))
+
+        # 如果只有本学科，并且大于1 label=-1就是domain-specific
+        # if len(paper_labels[pid]) == 1 and label == 1:
+        #     label = -1
         paper_label[pid] = label
 
         label_count[label] += 1
@@ -349,8 +359,8 @@ def label_inter(up, low, ITR):
 if __name__ == '__main__':
     # plot_topic_rel()
 
-    cor_sim_itr()
+    # cor_sim_itr()
 
     # I0_rate()
 
-    # cal_inter()
+    cal_inter()

@@ -150,6 +150,11 @@ def cor_sim_itr():
     # plt.plot(xs, ys, 'o')
     sns.scatterplot(data=data, x='FS', y='ITR')
 
+    sns.relplot(
+        data=data, x="FS", y="ITR", col="region",
+       style="event", kind="line"
+    )
+
     # xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
 
     # plt.plot(xs, ys, '--', c='r')
@@ -168,6 +173,8 @@ def cor_sim_itr():
              label="log(ITR) = 0.0661*log(DA)-0.1783\nR^2=0.064,PIR=0.962")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
+
+
 
     text_kwargs = dict(ha='center', va='bottom', color='r')
 

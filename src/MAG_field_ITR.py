@@ -165,7 +165,7 @@ def cor_sim_itr():
     plt.plot(xs,
              np.exp(res.fittedvalues),
              'b',
-             label="log(ITR) = 0.0661*log(DA)-0.1783")
+             label="log(ITR) = 0.0661*log(DA)-0.1783\nR^2=0.064,PIR=0.962")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 

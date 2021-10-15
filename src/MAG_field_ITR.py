@@ -166,7 +166,7 @@ def cor_sim_itr():
 
     print(res.summary())
     predict_v = res.predict(exog=dict(FS=xss))
-    print(r2_score(yss,np.exp(predict_v)))
+    print(r2_score(np.log(yss),predict_v))
 
 
     prstd, iv_l, iv_u = wls_prediction_std(res)

@@ -6,6 +6,7 @@
 4. 通过转化函数计算各个领域的转化区间
 
 '''
+from sklearn.metrics import r2_score
 from logging import log
 from basic_config import *
 
@@ -158,11 +159,14 @@ def cor_sim_itr():
 
     plt.plot(xss, yss, '--', c='r',alpha=0.5)
 
+
     mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
 
     res = mod.fit()
 
     print(res.summary())
+    print(r2_score(yss,mod.predict(xss)))
+
 
     prstd, iv_l, iv_u = wls_prediction_std(res)
 

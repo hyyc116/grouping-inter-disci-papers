@@ -151,12 +151,12 @@ def cor_sim_itr():
     ax = sns.scatterplot(data=data, x='FS', y='ITR')
 
     sns.lineplot(
-        data=data, x="FS", y="ITR",kind="line",ax=ax,alpha=0.5
+        data=data, x="FS", y="ITR",ax=ax,alpha=0.5
     )
 
-    # xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
+    xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
 
-    # plt.plot(xs, ys, '--', c='r')
+    plt.plot(xs, ys, '--', c='r')
 
     mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
 

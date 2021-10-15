@@ -192,7 +192,7 @@ def cor_sim_itr():
                  horizontalalignment='center',
                  verticalalignment='bottom')
 
-    plt.ylim(0.01, 10)
+    plt.ylim(0.05, 20)
     plt.legend(loc='best')
 
     plt.xscale("log")

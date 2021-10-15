@@ -165,7 +165,7 @@ def cor_sim_itr():
     res = mod.fit()
 
     print(res.summary())
-    print(r2_score(yss,mod.predict(xss)))
+    print(r2_score(yss, mod.predict(res.params,xss)))
 
 
     prstd, iv_l, iv_u = wls_prediction_std(res)

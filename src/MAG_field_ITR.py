@@ -165,7 +165,7 @@ def cor_sim_itr():
     res = mod.fit()
 
     print(res.summary())
-    predict_v = res.predict(exog=dict(x1=np.log(xss)))
+    predict_v = res.predict(exog=dict(FS=xss))
     print(r2_score(yss,np.exp(predict_v)))
 
 

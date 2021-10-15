@@ -148,10 +148,10 @@ def cor_sim_itr():
     plt.figure(figsize=(5, 4))
 
     # plt.plot(xs, ys, 'o')
-    sns.scatterplot(data=data, x='FS', y='ITR')
+    ax = sns.scatterplot(data=data, x='FS', y='ITR')
 
-    sns.relplot(
-        data=data, x="FS", y="ITR",kind="line"
+    sns.lineplot(
+        data=data, x="FS", y="ITR",kind="line",ax=ax,alpha=0.5
     )
 
     # xs, ys = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))

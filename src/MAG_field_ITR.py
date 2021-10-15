@@ -157,7 +157,7 @@ def cor_sim_itr():
 
     xss, yss = zip(*lowess(data['ITR'], data['FS'], frac=1. / 3, it=0))
 
-    plt.plot(xss, yss, '--', c='r',alpha=0.5)
+    plt.plot(xss, yss, '--', c='r', alpha=0.5, label='$R^2$=0.264')
 
 
     mod = smf.ols(formula='np.log(ITR) ~ np.log(FS)', data=data)
@@ -173,7 +173,7 @@ def cor_sim_itr():
     plt.plot(xs,
              np.exp(res.fittedvalues),
              'b',
-             label="log(ITR) = 0.0661*log(DA)-0.1783\nR^2=0.064,PIR=0.962")
+             label="log(ITR) = 0.0661*log(DA)-0.1783\n$R^2$=0.064,PIR=0.962")
     plt.plot(xs, np.exp(iv_u), 'r')
     plt.plot(xs, np.exp(iv_l), 'r')
 

@@ -29,7 +29,7 @@ def cal_paper_div():
         pid, subj, osubj, func, I0, It, ITR = line.split(',')
 
         paper_subj_citnum[pid][osubj] = It
-
+     
         total_subsjs.add(subj)
     
     total_num = len(total_subsjs)

@@ -37,7 +37,7 @@ def cal_paper_div():
     # 计算每一篇论文的diversity
     for pid in paper_subj_citnum.keys():
         
-        subjs = paper_subj_citnum[pid].keys()
+        subjs = list(paper_subj_citnum[pid].keys())
         subj_num = list(paper_subj_citnum[pid].values())
 
         variety = len(subjs)/float(total_num)

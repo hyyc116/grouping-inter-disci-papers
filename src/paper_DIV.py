@@ -9,7 +9,7 @@ from basic_config import *
 
 def cal_paper_div():
 
-    subj_refnum = json.loads(open('data/subj_refnum.json').read())
+    subj_refnum = json.loads(open('data/fos1_fos2_refnum.json').read())
 
     citnum_total = defaultdict(int)
     for subj in subj_refnum.keys():

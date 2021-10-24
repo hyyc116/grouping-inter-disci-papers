@@ -104,7 +104,7 @@ def cal_relations():
 
     plt.tight_layout()
 
-    plt.savefig('fig/relations.png',dpi=400)
+    plt.savefig('fig/relations2.png',dpi=400)
     logging.info('DONE')
 
 

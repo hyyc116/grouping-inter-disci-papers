@@ -6,6 +6,8 @@ diversity = balance * variaty * diaparsity
 
 '''
 from basic_config import *
+import math
+from scipy import stats
 
 def cal_paper_div():
 
@@ -52,6 +54,55 @@ def cal_paper_div():
     
     open('data/paper_DIV.json','w').write(json.dumps(paper_DIV))
     logging.info('DONE, data saved to data/paper_DIV.json')
+
+
+def cal_relations():
+
+    paper_DIV = json.loads(open('data/paper_DIV.json').read())
+
+    pid_ITRs = defaultdict(list)
+
+    for line in open("data/paper_ITR.csv"):
+        line = line.strip()
+
+        if line.startswith('pid'):
+            continue
+        
+        pid, subj, osubj, func, I0, It, ITR = line.split(',')
+
+        if subj!=osubj:
+            pid_ITRs[pid].append(float(ITR))
+
+    
+    DIVs = []
+    maxITRs = []
+    
+    for pid in pid_ITRs.keys():
+
+        DIV = paper_DIV.get(pid,None)
+
+        if DIV is None or math.isnan(DIV):
+            continue
+        
+        ITRs = pid_ITRs[pid]
+        max_ITR = np.max(ITRs)
+
+        DIVs.append(DIV)
+        maxITRs.append(max_ITR)
+    
+    # 计算相似度
+    rho, pval = stats.spearmanr(DIVs, maxITRs)
+
+    plt.figure(figsize=(5,4))
+
+    sns.lineplot(data={'TDI':maxITRs,'DIV':DIVs},x='TDI',y='DIV',label='spearman coef:{:.2f},p-Value:{:.2f}'.format(rho,pval))
+
+    plt.tight_layout()
+
+    plt.savefig('fig/relations.png',dpi=400)
+    logging.info('DONE')
+
+
 
 
 def cal_disparsity(subj_set, subj_refnum, citnum_total):
@@ -117,4 +168,6 @@ def gini(array):
 
 
 if __name__=='__main__':
-    cal_paper_div()
+    # cal_paper_div()
+
+    cal_relations()

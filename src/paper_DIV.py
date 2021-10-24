@@ -94,8 +94,13 @@ def cal_relations():
     rho, pval = stats.spearmanr(DIVs, maxITRs)
 
     plt.figure(figsize=(5,4))
+    data = {'TDI': maxITRs, 'DIV': DIVs}
+    # sns.lineplot(data={'TDI':maxITRs,'DIV':DIVs},x='TDI',y='DIV',label='spearman coef:{:.2f},p-Value:{:.2f}'.format(rho,pval))
 
-    sns.lineplot(data={'TDI':maxITRs,'DIV':DIVs},x='TDI',y='DIV',label='spearman coef:{:.2f},p-Value:{:.2f}'.format(rho,pval))
+    sns.histplot(
+        data = data , x="TDI", y="DIV",
+        bins=30, discrete=(False, False), log_scale=(True, False), label='spearman coef:{:.2f},p-Value:{:.2f}'.format(rho, pval)
+    )
 
     plt.tight_layout()
 

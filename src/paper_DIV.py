@@ -102,6 +102,8 @@ def cal_relations():
         bins=30, discrete=(False, False), log_scale=(True, False), label='spearman coef:{:.2f},p-Value:{:.2f}'.format(rho, pval)
     )
 
+    plt.legend()
+
     plt.tight_layout()
 
     plt.savefig('fig/relations2.png',dpi=400)

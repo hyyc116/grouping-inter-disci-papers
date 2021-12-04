@@ -185,7 +185,7 @@ def top_paper_info():
 
     paper_DIV = json.loads(open('data/paper_DIV.json').read())
 
-    top_20_DIV = sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)
+    top_20_DIV = sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)[:20]
 
     paper_ITR = {}
 
@@ -201,7 +201,7 @@ def top_paper_info():
             paper_ITR[pid] = max([float(paper_ITR.get(pid, 0)), float(ITR)])
     
     TOP_20_ITR = sorted(paper_ITR.keys(), key=lambda x: float(
-        paper_ITR[x]), reverse=True)
+        paper_ITR[x]), reverse=True)[:20]
 
     query_op = dbop()
 

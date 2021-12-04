@@ -205,11 +205,11 @@ def top_paper_info():
 
     query_op = dbop()
 
-    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id and A.paper_id="
+    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id and A.paper_id={:}"
 
     lines = ["paper_id, year, paper_title, original_venue,display_name"]
     for pid in top_20_DIV:
-        for paper_id, year, paper_title, original_venue,display_name in query_op.query_database(sql+pid):
+        for paper_id, year, paper_title, original_venue,display_name in query_op.query_database(sql.format(pid)):
             lines.append(f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
     
     open('data/top_20_DIV.csv','w').write(lines)
@@ -217,7 +217,7 @@ def top_paper_info():
     
     ITR_lines = ["paper_id, year, paper_title, original_venue,display_name"]
     for pid in TOP_20_ITR:
-        for paper_id, year, paper_title, original_venue in query_op.query_database(sql+pid):
+        for paper_id, year, paper_title, original_venue in query_op.query_database(sql.format(pid)):
             ITR_lines.append(
                 f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
     

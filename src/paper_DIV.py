@@ -216,10 +216,10 @@ def top_paper_info():
             ITR_lines.append(
                 f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
     
-    open('data/top_20_DIV.csv','w').write(lines)
+    open('data/top_20_DIV.csv','w').write('\n'.join(lines))
     logging.info('data saved to data/top_20_DIV.csv.')
     
-    open('data/top_20_ITR.csv', 'w').write(ITR_lines)
+    open('data/top_20_ITR.csv', 'w').write('\n'.join(ITR_lines))
     logging.info('data saved to data/top_20_ITR.csv.')
     
 

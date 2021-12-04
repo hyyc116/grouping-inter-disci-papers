@@ -185,7 +185,7 @@ def top_paper_info():
 
     paper_DIV = json.loads(open('data/paper_DIV.json').read())
 
-    top_20_DIV = sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)[:20]
+    top_20_DIV = set(sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)[:20])
 
     paper_ITR = {}
 
@@ -200,26 +200,24 @@ def top_paper_info():
         if subj != osubj:
             paper_ITR[pid] = max([float(paper_ITR.get(pid, 0)), float(ITR)])
     
-    TOP_20_ITR = sorted(paper_ITR.keys(), key=lambda x: float(
-        paper_ITR[x]), reverse=True)[:20]
+    TOP_20_ITR = set(sorted(paper_ITR.keys(), key=lambda x: float(
+        paper_ITR[x]), reverse=True)[:20])
 
     query_op = dbop()
 
-    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id and A.paper_id='{:}'"
-
+    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id"
     lines = ["paper_id, year, paper_title, original_venue,display_name"]
-    for pid in top_20_DIV:
-        for paper_id, year, paper_title, original_venue,display_name in query_op.query_database(sql.format(pid)):
+    ITR_lines = ["paper_id, year, paper_title, original_venue,display_name"]
+    for paper_id, year, paper_title, original_venue, display_name in query_op.query_database(sql):
+        if paper_id in top_20_DIV:
             lines.append(f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
+        
+        if paper_id in TOP_20_ITR:
+            ITR_lines.append(
+                f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
     
     open('data/top_20_DIV.csv','w').write(lines)
     logging.info('data saved to data/top_20_DIV.csv.')
-    
-    ITR_lines = ["paper_id, year, paper_title, original_venue,display_name"]
-    for pid in TOP_20_ITR:
-        for paper_id, year, paper_title, original_venue in query_op.query_database(sql.format(pid)):
-            ITR_lines.append(
-                f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
     
     open('data/top_20_ITR.csv', 'w').write(ITR_lines)
     logging.info('data saved to data/top_20_ITR.csv.')

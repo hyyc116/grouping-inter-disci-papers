@@ -198,7 +198,7 @@ def top_paper_info():
         pid, subj, osubj, func, I0, It, ITR = line.split(',')
 
         if subj != osubj:
-            paper_ITR[pid] = max([float(paper_ITR.get(pid,0)),ITR])
+            paper_ITR[pid] = max([float(paper_ITR.get(pid, 0)), float(ITR)])
     
     TOP_20_ITR = sorted(paper_ITR.keys(), key=lambda x: float(
         paper_ITR[x]), reverse=True)

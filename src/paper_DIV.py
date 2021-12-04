@@ -205,7 +205,7 @@ def top_paper_info():
 
     query_op = dbop()
 
-    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id and A.paper_id={:}"
+    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id and A.paper_id='{:}'"
 
     lines = ["paper_id, year, paper_title, original_venue,display_name"]
     for pid in top_20_DIV:

@@ -180,7 +180,59 @@ def gini(array):
     return ((np.sum((2 * index - n - 1) * array)) / (n * np.sum(array)))
 
 
+
+def top_paper_info():
+
+    paper_DIV = json.loads(open('data/paper_DIV.json').read())
+
+    top_20_DIV = sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)
+
+    paper_ITR = {}
+
+    for line in open("data/paper_ITR.csv"):
+        line = line.strip()
+
+        if line.startswith('pid'):
+            continue
+
+        pid, subj, osubj, func, I0, It, ITR = line.split(',')
+
+        if subj != osubj:
+            paper_ITR[pid] = max([paper_ITR.get(pid,0),ITR])
+    
+    TOP_20_ITR = sorted(paper_ITR.keys(), key=lambda x: float(
+        paper_ITR[x]), reverse=True)
+
+    query_op = dbop()
+
+    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id where A.paper_id="
+
+    lines = ["paper_id, year, paper_title, original_venue,display_name"]
+    for pid in top_20_DIV:
+        for paper_id, year, paper_title, original_venue,display_name in query_op.query_database(sql+pid):
+            lines.append(f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
+    
+    open('data/top_20_DIV.csv','w').write(lines)
+    logging.info('data saved to data/top_20_DIV.csv.')
+    
+    ITR_lines = ["paper_id, year, paper_title, original_venue,display_name"]
+    for pid in TOP_20_ITR:
+        for paper_id, year, paper_title, original_venue in query_op.query_database(sql+pid):
+            ITR_lines.append(
+                f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
+    
+    open('data/top_20_ITR.csv', 'w').write(ITR_lines)
+    logging.info('data saved to data/top_20_ITR.csv.')
+    
+
+
+
+
+
+    
+
 if __name__=='__main__':
     # cal_paper_div()
 
-    cal_relations()
+    # cal_relations()
+    top_paper_info()

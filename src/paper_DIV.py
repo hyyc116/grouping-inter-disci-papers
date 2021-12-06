@@ -185,7 +185,7 @@ def top_paper_info():
 
     paper_DIV = json.loads(open('data/paper_DIV.json').read())
 
-    top_20_DIV = set(sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)[:20])
+    top_20_DIV = set(sorted(paper_DIV.keys(),key= lambda x:float(paper_DIV[x]),reverse=True)[:40])
 
     paper_ITR = {}
 
@@ -201,7 +201,7 @@ def top_paper_info():
             paper_ITR[pid] = max([float(paper_ITR.get(pid, 0)), float(ITR)])
     
     TOP_20_ITR = set(sorted(paper_ITR.keys(), key=lambda x: float(
-        paper_ITR[x]), reverse=True)[:20])
+        paper_ITR[x]), reverse=True)[:40])
     
     logging.info(f'length of DIV: {len(top_20_DIV)},length of ITR:{len(TOP_20_ITR)}')
 

@@ -202,6 +202,8 @@ def top_paper_info():
     
     TOP_20_ITR = set(sorted(paper_ITR.keys(), key=lambda x: float(
         paper_ITR[x]), reverse=True)[:20])
+    
+    logging.info(f'length of DIV: {len(top_20_DIV)},length of ITR:{len(TOP_20_ITR)}')
 
     query_op = dbop()
 

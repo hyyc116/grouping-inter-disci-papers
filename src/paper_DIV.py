@@ -207,16 +207,16 @@ def top_paper_info():
 
     query_op = dbop()
 
-    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue,C.display_name from mag_core.papers as A, mag_core.paper_author_affiliations as B, mag_core.authors as C where A.paper_id = B.paper_id and B.author_id = C.author_id"
-    lines = ["paper_id, year, paper_title, original_venue,display_name"]
-    ITR_lines = ["paper_id, year, paper_title, original_venue,display_name"]
-    for paper_id, year, paper_title, original_venue, display_name in query_op.query_database(sql):
+    sql = "select A.paper_id,A.year,A.paper_title,A.original_venue from mag_core.papers as A"
+    lines = ["paper_id, year, paper_title, original_venue"]
+    ITR_lines = ["paper_id, year, paper_title, original_venue"]
+    for paper_id, year, paper_title, original_venue in query_op.query_database(sql):
         if paper_id in top_20_DIV:
-            lines.append(f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
+            lines.append(f"{paper_id},{year},{paper_title},{original_venue}")
         
         if paper_id in TOP_20_ITR:
             ITR_lines.append(
-                f"{paper_id},{year},{paper_title},{original_venue},{display_name}")
+                f"{paper_id},{year},{paper_title},{original_venue}")
     
     open('data/top_20_DIV.csv','w').write('\n'.join(lines))
     logging.info('data saved to data/top_20_DIV.csv.')
